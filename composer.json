@@ -1,0 +1,15 @@
+{
+    "name": "ianka/the_shop",
+    "autoload": {
+        "psr-4": {
+            "Ianka\\TheShop\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "IanKarel15",
+            "email": "iankareld_23@alu.uabcs.mx"
+        }
+    ],
+    "require": {}
+}
