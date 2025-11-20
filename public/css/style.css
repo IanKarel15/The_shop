@@ -83,11 +83,9 @@ ul {
 .menupropio {
     display: block;
     position: absolute;
-    top: 23%;
     background: var(--f-blanco);;
     width: 250px;
     z-index: 100;
-    
     padding: 0;
     box-shadow: 2px 2px 5px 0 var(--gris);
     border-radius: 5px;
@@ -97,7 +95,7 @@ ul {
 }
 
 li:hover .menupropio {
-    max-height: 700px;
+    max-height: 400px;
     transition: max-height 0.4s ease-in;
 }
 
@@ -112,8 +110,18 @@ body {
     gap: 20px;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
     height: 1px;
+}
+
+.iconos img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.iconos img:hover {
+    transform: scale(1.1); 
 }
 
 /*--------Contenedores y asi--------------*/

@@ -17,6 +17,7 @@ require __DIR__.'/../../helpers/functions.php';
     <header>
         <div class="logo-container">
             <img class="logo" src="<?=ASSETS_PATH?>/icono.png">
+            
         </div>
         <nav class="link-container">
             <a class="link" href="reporte.html">Ayuda</a>

@@ -1,7 +1,6 @@
 <?php 
 include '../src/views/layouts/header.php';
 ?>
-
     <nav class="menu-dos">
         <ul>
             <li><a class="link-dos" href="#">Camisas</a>
@@ -55,8 +54,7 @@ include '../src/views/layouts/header.php';
     </nav>
 
 
-<!-- Cuerpa del los productos -->
-    
+
 
 </body>
 </html>
