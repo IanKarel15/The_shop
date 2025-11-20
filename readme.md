@@ -1,9 +1,3 @@
-¡Claro\! Aquí tienes un borrador de archivo **README.md** estructurado y profesional para tu proyecto final "The Shop".
-
-Este borrador incluye secciones esenciales para un proyecto de GitHub, como la descripción, el equipo, la instalación, y el uso.
-
------
-
 # 🛍️ The Shop
 
 ## Descripción del Proyecto
@@ -60,14 +54,7 @@ composer install
 
 <!-- end list -->
 
-```
-# Ejemplo de configuración para .env
-DB_HOST=localhost
-DB_NAME=the_shop_db
-DB_USER=root
-DB_PASS=
-BASE_URL=http://localhost/The_shop/public
-```
+
 
 ### 5\. Acceso al Sitio
 
@@ -90,6 +77,3 @@ Este proyecto fue desarrollado por el siguiente equipo:
 
 -----
 
-## 📜 Licencia
-
-[Aquí puedes especificar la licencia (ej. MIT). Si es solo un proyecto académico, puedes omitir esta sección o indicar que es solo para fines educativos.]
