@@ -56,61 +56,7 @@ include '../src/views/layouts/header.php';
 
 
 <!-- Cuerpa del los productos -->
-    <div class="producto-content">
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img1.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img2.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img3.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img4.png" alt="imagen">
-            </a>
-        </div>
-    </div>
-
-    <div class="producto-content">
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img5.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img6.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img7.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img8.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img9.png" alt="imagen">
-            </a>
-        </div>
-        <div class="producto">
-            <a href="subpag1.html">
-                <img src="img/img10.png" alt="imagen">
-            </a>
-        </div>
-    </div>
+    
 
 </body>
 </html>
