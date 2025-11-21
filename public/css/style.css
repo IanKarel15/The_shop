@@ -87,8 +87,8 @@ header {
 .menu-categorias {
     display: flex;
     gap: 30px;
-}
 
+}
 .link-cat {
     text-decoration: none;
     color: var(--gris-texto);
