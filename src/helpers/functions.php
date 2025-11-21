@@ -14,8 +14,6 @@ function view($template, $data = [])
     $viewsPath = __DIR__ . '/../views/';
     $layoutPath = $viewsPath . 'layouts/';
 
-    require $layoutPath . 'header.php';
-
     // Vista solicitada
     require $viewsPath . $template . '.php';
 
