@@ -20,4 +20,5 @@ function view($template, $data = [])
     require $viewsPath . $template . '.php';
 
 }
+
 ?>

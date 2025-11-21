@@ -14,7 +14,7 @@
      <!-- Encabezados y menus -->
     <header>
         <div class="logo-container">
-            <img class="logo" src="<?=ASSETS_PATH?>/logo.jpg">
+            <img class="logo" src="<?=ASSETS_PATH?>/logo.png">
             
         </div>
         <nav class="link-container">
