@@ -1,6 +1,13 @@
 <?php 
-include '../src/views/layouts/header.php';
-?>
 
-</body>
-</html>
+require_once __DIR__ . '/../src/helpers/functions.php';
+
+// Obtener ruta limpia desde $_GET['route']
+$route = trim($_GET['route'] ?? '', '/');
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($route === '' || $route === 'home') {
+    return view('home/index');
+}
+
+?>

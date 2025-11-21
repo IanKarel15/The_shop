@@ -1,9 +1,10 @@
 <?php
 
 return [
-    'base_url' => 'http://localhost/The_shop/public',
-    'assets_url' => 'http://localhost/The_shop/public/assets',
-    'src_url' => 'http://localhost/The_shop/src',
-    
+    'base_url' => 'http://the_shop/public',
+    'assets_url' => 'http://the_shop/public/assets'
+
 ];
+
+
 ?>

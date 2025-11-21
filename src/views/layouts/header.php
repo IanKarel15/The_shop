@@ -1,6 +1,4 @@
-<?php 
-require __DIR__.'/../../helpers/functions.php';
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
