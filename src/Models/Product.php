@@ -1,43 +1,43 @@
 <?php
+require_once __DIR__.'/../config/database.php';
 
 class Product {
     private PDO $pdo;
     public $id;
     public $name;
-    public $description;
+    public $price;
     public $image;
 
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
     }
 
-    public function all() {
+
+    public function getAll() {
         try {
-            $sql = "SELECT * FROM careers";
-
+            $sql = "SELECT * FROM clothesitem";
             $stmt = $this->pdo->query($sql);
-
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $products = [];
 
             foreach($rows as $row) {
-                $product = new Product($this->pdo);
-                $product->id = $row['id'];
-                $product->name = $row['name'];
-                $product->description = $row['description'];
-                $product->image = $row['image'];
+                $product = new Product($this->pdo); //Crear objeto de clase Product y después añadir sus atributos
+                $product->id = $row['id']; // id
+                $product->name = $row['name']; // nombre del produto
+                $product->price = $row['price']; // precio del producto
+                //$product->image = $row['image']; // imagen del producto (pendiente, no lo hemos pensado bien aún)
                 $products[] = $product;
             }
 
-            return $products;
+            return $products; // Regresa el objeto de clase Product, para acceder a sus atributos con "->(atributo)"
         }catch (PDOException $e) {
             error_log("Error al consultar la base de datoso: ". $e->getMessage());
             return [];
         }
     }
 
-    public function find($id) {
+/*    public function find($id) {
 
         if(!is_numeric($id) || $id <= 0) {
             return null;
@@ -64,5 +64,6 @@ class Product {
             return [];
         }
     }
+        */
 }
 ?>
