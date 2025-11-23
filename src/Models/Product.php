@@ -7,6 +7,7 @@ class Product {
     public $name;
     public $price;
     public $image;
+    public $sizes = [];
 
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
@@ -37,33 +38,51 @@ class Product {
         }
     }
 
-/*    public function find($id) {
+    public function getProductDetails($id) { // Regresar un Producto con id
 
         if(!is_numeric($id) || $id <= 0) {
             return null;
         }
 
         try {
-            $sql = "SELECT * FROM careers WHERE id = :id LIMIT 1";
+            // Por ahora no usamos la imágen
+            $sql = "SELECT 
+                        ci.id AS clothesitem_id,
+                        ci.name AS clothesitem_name,
+                        ci.price AS clothesitem_price,
+                        s.id AS size_id,
+                        s.size AS size_name
+                    FROM clothesitem ci
+                    JOIN clothesitem_size cis ON ci.id = cis.clothesitem_id
+                    JOIN size s ON cis.size_id = s.id
+                    WHERE ci.id = :id;";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute(['id' => $id]);
-            $careerDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene varios productos porque también tiene que conseguir las tallas
 
-            if (!$careerDetails) {
-                return null; // Carrera no encontrada
+            if (!$products) {
+                return null; // Producto no encontrado
             }
+            
+            // Guardar todos los datos la primera vez
+            $this->id = $products[0]['clothesitem_id'];
+            $this->name = $products[0]['clothesitem_name'];
+            $this->price = $products[0]['clothesitem_price'];
+            // $this->image = $products[0]['image'];
 
-            $this->id = $careerDetails['id'];
-            $this->name = $careerDetails['name'];
-            $this->description = $careerDetails['description'];
-            $this->image = $careerDetails['image'];
+            // Guardar todas las tallas disponibles del producto (solo el texto)
+            foreach ($products as $p) {
+                $this->sizes[] = $p['size_name'];
+            }
 
             return $this;
         } catch (PDOException $e) {
             error_log("Error al consultar la base de datos: " . $e->getMessage());
             return [];
         }
+        
     }
-        */
+
 }
+
 ?>
