@@ -131,7 +131,6 @@ header {
 /* ================= GRID PRODUCTOS ================= */
 .producto-content {
     display: grid;
-    
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 40px;
     padding: 60px 40px;
@@ -140,9 +139,8 @@ header {
 }
 
 .producto {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    text-align: center;
     transition: transform 0.3s;
 }
 

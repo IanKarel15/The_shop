@@ -7,7 +7,10 @@ $route = trim($_GET['route'] ?? '', '/');
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($route === '' || $route === 'home') {
-    return view('home/index');
+    $productModel = new Product(getPDO());
+    $products = $productModel->getAll();
+    return view('home/index', ['products' => $products]);
 }
 
+  
 ?>
