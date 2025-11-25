@@ -9,8 +9,8 @@ class Product {
     public $image;
     public $sizes = [];
 
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;
+    public function __construct() {
+        $this->pdo = getPDO();
     }
 
 
