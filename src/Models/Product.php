@@ -8,6 +8,9 @@ class Product {
     public $price;
     public $image;
     public $sizes = [];
+    
+    public $quantity;
+    public $size;
 
     public function __construct() {
         $this->pdo = getPDO();
