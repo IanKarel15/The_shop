@@ -73,6 +73,21 @@ class Cart {
         }
     }
 
+    public function delete ($product_id) {
+        $sql = "DELETE FROM clothesitem WHERE id = :id";
+        $stmt = $this->pdo->prepdare($sql);
+        $stmt->execute(['id' => $product_id]);
+        
+        if ($stmt->row_count()){
+            return true; // Producto eliminado
+        } else {
+            return false; // No se pudo eliminar el producto
+        }
+    }
+
+    public function buyAll () {
+    }
 }
 
-print_r((new Cart())->getAll());
+
+// print_r((new Cart())->getAll());
