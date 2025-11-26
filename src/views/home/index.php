@@ -8,7 +8,9 @@ require_once '../src/views/layouts/header.php';
         foreach($products as $product) : 
     ?>
     <div class="producto">
-        <img src="<?=ASSETS_PATH?>/img1.png" alt="<?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?>">
+        <a href="<?=BASE_PATH?>/products/<?=$product->id?>">
+            <img src="<?=ASSETS_PATH?>/img1.png" alt="<?= htmlspecialchars($product->name ?? 'Producto') ?>">
+        </a>
         <h3><?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?></h3>
         <h2><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></h3>
     </div>

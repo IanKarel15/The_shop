@@ -177,3 +177,134 @@ header {
         padding: 20px;
     }
 }
+
+/* ================= DETALLE DE PRODUCTO ================= */
+
+.detalle-producto-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    max-width: 1200px;
+    margin: 60px auto; 
+    padding: 0 40px;
+    gap: 80px; 
+}
+
+/* --- Columna Imagen --- */
+.columna-imagen {
+    flex: 1; /* Ocupa la mitad */
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.columna-imagen img {
+    width: 100%;
+    max-width: 500px; 
+    height: auto;
+    object-fit: contain;
+}
+
+/* --- Columna Info --- */
+.columna-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 40px; 
+}
+
+.titulo-producto {
+    font-size: 18px;
+    color: var(--gris-texto);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.precio-producto {
+    font-size: 20px;
+    color: var(--gris-texto);
+    letter-spacing: 2px;
+    margin-bottom: 80px; 
+}
+
+/* --- Sección Tallas --- */
+.seccion-tallas {
+    margin-bottom: 80px; 
+}
+
+.label-tallas {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--gris-texto);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.opciones-tallas {
+    display: flex;
+    gap: 40px; 
+    padding-left: 10px; 
+}
+
+.talla {
+    text-decoration: none;
+    color: var(--gris-texto);
+    font-size: 16px;
+    border-bottom: 1px solid var(--gris-texto);
+    padding-bottom: 2px;
+    transition: all 0.3s;
+}
+
+.talla:hover {
+    color: var(--azulfuerte);
+    border-bottom-color: var(--azulfuerte);
+    transform: scale(1.1);
+}
+
+/* --- Botón Agregar --- */
+.btn-agregar-carrito {
+    background-color: var(--azulfuerte);
+    color: var(--f-blanco);
+    border: none;
+    padding: 18px 60px;
+    font-size: 18px;
+    letter-spacing: 6px; 
+    border-radius: 30px; 
+    cursor: pointer;
+    width: fit-content; 
+    transition: background-color 0.3s, transform 0.2s;
+    text-transform: uppercase;
+}
+
+.btn-agregar-carrito:hover {
+    background-color: #2a2640; 
+    transform: translateY(-2px);
+}
+
+/* ================= RESPONSIVO (Móvil) ================= */
+@media (max-width: 768px) {
+    .detalle-producto-container {
+        flex-direction: column; 
+        align-items: center;
+        gap: 40px;
+        margin-top: 30px;
+    }
+
+    .columna-imagen, .columna-info {
+        width: 100%;
+        text-align: center; 
+        align-items: center;
+    }
+
+    .opciones-tallas {
+        justify-content: center; 
+        padding-left: 0;
+    }
+    
+    .titulo-producto {
+        font-size: 16px;
+    }
+}

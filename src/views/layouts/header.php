@@ -17,7 +17,6 @@
             </div>
             
             <div class="auth-links">
-                <a class="link-auth" href="registro.html">REGISTRAR</a>
                 <a class="btn-login" href="login.html">INICIAR SESION</a>
             </div>
         </div>

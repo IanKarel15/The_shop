@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'/../config/database.php';
-
+namespace App\Models;
+use PDO;
 class Product {
     private PDO $pdo;
     public $id;

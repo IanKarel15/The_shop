@@ -1,6 +1,8 @@
 <?php 
 
 $config = require __DIR__.'/../config/config.php';
+require __DIR__.'/../config/database.php';
+
 
 define('BASE_PATH', $config['base_url']);
 define('ASSETS_PATH', $config['assets_url']);

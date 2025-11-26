@@ -6,8 +6,8 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../../');
 $dotenv->load(); //Creo que aquí se extraen los datos del .env
 
 return[
-    'base_url' => 'http://the_shop/public',
-    'assets_url' => 'http://the_shop/public/assets',
+     'base_url' => $_ENV['APP_URL'],
+    'assets_url' => $_ENV['APP_URL'].'/assets',
     'db' => [
         //Aquí van los datos del extraídos del .env
         'host' => $_ENV['DB_HOST'],
