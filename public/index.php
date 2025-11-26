@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../src/helpers/functions.php';
 require_once __DIR__.'/../src/Models/Product.php';
-require_once __DIR__.'/../src/Models/Cart.php';
+// require_once __DIR__.'/../src/Models/Cart.php';
 
 // Obtener ruta limpia desde $_GET['route']
 $route = trim($_GET['route'] ?? '', '/');
