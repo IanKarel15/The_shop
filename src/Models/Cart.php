@@ -86,8 +86,38 @@ class Cart {
     }
 
     public function buyAll () {
+        try {
+            $this->pdo->beginTransaction();
+
+            //  Descontar stock de la tabla "stock" a los productos y tallas que están en el carrito
+            $sqlUpdate = "
+                UPDATE stock s
+                JOIN cart_clothesitem c
+                ON s.clothesitem_id = c.clothesitem_id
+                AND s.size_id = c.size_id
+                SET s.quantity = GREATEST(s.quantity - c.quantity, 0)
+                WHERE c.cart_id = :cart_id
+            ";
+
+            $stmtUpdate = $this->pdo->prepare($sqlUpdate);
+            $stmtUpdate->execute(['cart_id' => 1]);
+
+            // Vaciar todos los productos del carrito
+            $sqlDelete = "
+            DELETE FROM cart_clothesitem
+            WHERE cart_id = :cart_id
+            ";
+
+            $stmtDelete = $this->pdo->prepare($sqlDelete);
+            $stmtDelete->execute(['cart_id' => 1]); // Si se agregan carritos a cada usuario se cambiaría el 1 por la id del carrito}
+
+            $this->pdo->commit();
+        } catch (Exception $e) {
+            $pdo->rollback(); // Error, cancelar consultas
+        }
     }
+
 }
 
 
-// print_r((new Cart())->getAll());
+print_r((new Cart())->buyAll());
