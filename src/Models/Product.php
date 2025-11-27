@@ -86,6 +86,38 @@ class Product {
         
     }
 
+    public function delete($id)
+    {
+        try {
+            // Iniciamos la transacción
+            $this->pdo->beginTransaction();
+
+            // Borrar relaciones en 'clothesitem_size' 
+            $stmtSizes = $this->pdo->prepare("DELETE FROM clothesitem_size WHERE clothesitem_id = ?");
+            $stmtSizes->execute([$id]);
+
+            // Borrar relaciones en 'stock'
+            
+            $stmtStock = $this->pdo->prepare("DELETE FROM stock WHERE clothesitem_id = ?");
+            $stmtStock->execute([$id]);
+
+            // Finalmente, borrar el producto padre 'clothesitem'
+            $stmtProduct = $this->pdo->prepare("DELETE FROM clothesitem WHERE id = ?");
+            $stmtProduct->execute([$id]);
+
+            $this->pdo->commit();
+            return true;
+
+        } catch (PDOException $e) {
+            
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+            error_log("Error al eliminar el producto: " . $e->getMessage());
+            return false;
+        }
+    }
+
 }
 
 ?>

@@ -308,3 +308,213 @@ header {
         font-size: 16px;
     }
 }
+
+/* ================= PÁGINA ERROR 404 ================= */
+
+.error-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh; 
+    padding: 40px 20px;
+    background-color: var(--f-blanco);
+}
+
+.error-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.codigo-404 {
+    font-size: 150px; 
+    color: var(--azulfuerte);
+    line-height: 1;
+    margin-bottom: 20px;
+    font-weight: bold;
+    opacity: 0.1; 
+    
+    
+}
+
+.mensaje-titulo {
+    font-size: 24px;
+    color: var(--azulfuerte);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.mensaje-texto {
+    font-size: 16px;
+    color: var(--gris-texto);
+    letter-spacing: 1px;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+.btn-volver {
+    display: inline-block;
+    background-color: var(--azulfuerte);
+    color: var(--f-blanco);
+    text-decoration: none;
+    padding: 15px 50px;
+    border-radius: 30px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-volver:hover {
+    background-color: #2a2640;
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 768px) {
+    .codigo-404 {
+        font-size: 100px;
+    }
+    
+    .mensaje-titulo {
+        font-size: 20px;
+    }
+    
+    .btn-volver {
+        padding: 12px 30px;
+        width: 100%; 
+    }
+}
+
+/* ================= CONTENEDOR PRINCIPAL ================= */
+.main-content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 40px;
+}
+
+.page-title {
+    font-size: 24px; 
+    font-weight: 600; 
+    color: var(--azulfuerte);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ================= BOTONES ================= */
+
+.btn-main {
+    display: inline-block;
+    background-color: var(--azulfuerte);
+    color: var(--f-blanco);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.btn-main:hover {
+    background-color: #2a2640;
+}
+
+.btn-action {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px; 
+    color: var(--f-blanco);
+    transition: background-color 0.3s;
+}
+
+.btn-edit {
+    background-color: #f59e0b;
+    margin-right: 8px;
+}
+.btn-edit:hover {
+    background-color: #d97706;
+}
+
+.btn-delete {
+    background-color: #dc2626; 
+}
+.btn-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* ================= TABLA ================= */
+
+.table-responsive {
+    overflow-x: auto; 
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    border: 1px solid #e5e7eb;
+}
+
+.custom-table {
+    width: 100%;
+    background-color: var(--f-blanco);
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.custom-table thead {
+    background-color: #f3f4f6; 
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.custom-table th {
+    padding: 12px 16px; 
+    font-weight: 600;
+    color: var(--azulfuerte);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.custom-table tbody tr {
+    border-bottom: 1px solid #e5e7eb; 
+    transition: background-color 0.2s;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f9fafb; 
+}
+
+.custom-table td {
+    padding: 12px 16px; 
+    color: var(--gris-texto);
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.actions-cell {
+    display: flex;
+    align-items: center;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 0 20px;
+    }
+    
+    .actions-cell {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn-action {
+        width: 100%;
+        text-align: center;
+    }
+}

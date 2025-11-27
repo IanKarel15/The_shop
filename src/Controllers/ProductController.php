@@ -19,6 +19,21 @@ class ProductController {
         return view('products/productInfo', ['product' => $product]);
     }
 
+    public function adminIndex() {
+        $productModel = new Product(getPDO());
+        $products = $productModel->getAll(); 
+        
+        return view('admin/index', ['products' => $products]);
+    }
+
+     public function delete($id)
+    {
+        $product = new Product(getPDO());
+        $product->delete($id);
+
+        return redirect('/admin/index');
+    }
+
 
 }
 

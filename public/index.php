@@ -23,8 +23,19 @@ if (preg_match('#^products/(\d+)$#', $route, $matches)) {
   }
 }
 
+if($route === 'admin/index') {
+  return (new ProductController())->adminIndex();
+}
+
+if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
+    $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
+    return (new ProductController())->delete($productId);
+}
 
 
 
+
+http_response_code(404);
+return view('errors/error');
   
 ?>

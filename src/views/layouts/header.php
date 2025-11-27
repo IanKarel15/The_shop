@@ -17,23 +17,9 @@
             </div>
             
             <div class="auth-links">
-                <a class="btn-login" href="login.html">INICIAR SESION</a>
+                <a class="btn-login" href= "<?=BASE_PATH?>/admin/index">INICIAR SESION</a>
             </div>
         </div>
 
-        <div class="bottom-bar">
-            <nav class="menu-categorias">
-                <a class="link-cat" href="#">CAMISAS</a>
-                <a class="link-cat" href="#">PANTALONES</a>
-                <a class="link-cat" href="#">ACCESORIOS</a>
-            </nav>
-
-            <div class="iconos-container">
-                <a href="buscar.html"><img src="<?=ASSETS_PATH?>/lupa.png" alt="Buscar"></a>
-                <a href="perfil.html"><img src="<?=ASSETS_PATH?>/perfil.png" alt="Perfil"></a>
-                <a href="carrito.html"><img class="icono-carrito" src="<?=ASSETS_PATH?>/carrito.png" alt="Carrito"></a>
-            </div>
-        </div>
-    </header>
-
+        
    

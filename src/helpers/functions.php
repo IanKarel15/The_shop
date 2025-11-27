@@ -21,4 +21,9 @@ function view($template, $data = [])
 
 }
 
+function redirect($path) {
+    header('Location: '.BASE_PATH.'/'.$path);
+    exit;
+}
+
 ?>
