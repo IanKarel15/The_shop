@@ -6,8 +6,9 @@ class Product {
     public $id;
     public $name;
     public $price;
-    public $image;
+    public $imageURL;
     public $sizes = [];
+    public $description;
     
     public $quantity;
     public $size;
@@ -54,10 +55,12 @@ class Product {
                         ci.name AS clothesitem_name,
                         ci.price AS clothesitem_price,
                         s.id AS size_id,
-                        s.size AS size_name
+                        s.size AS size_name,
+                        ci.description AS clothesitem_description,
+                        ci.image AS clothesitem_image
                     FROM clothesitem ci
-                    JOIN clothesitem_size cis ON ci.id = cis.clothesitem_id
-                    JOIN size s ON cis.size_id = s.id
+                    LEFT JOIN clothesitem_size cis ON ci.id = cis.clothesitem_id
+                    LEFT JOIN size s ON cis.size_id = s.id
                     WHERE ci.id = :id;";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute(['id' => $id]);
@@ -71,6 +74,8 @@ class Product {
             $this->id = $products[0]['clothesitem_id'];
             $this->name = $products[0]['clothesitem_name'];
             $this->price = $products[0]['clothesitem_price'];
+            $this->description = $products[0]['clothesitem_description'];
+            $this->imageURL = $products[0]['clothesitem_image'];
             // $this->image = $products[0]['image'];
 
             // Guardar todas las tallas disponibles del producto (solo el texto)
@@ -140,5 +145,6 @@ class Product {
         ]);
     }
 }
-// (new Product())->edit(1, "Pantalonsico", 555500);
+// print_r((new Product())->getProductDetails(2));
+
 ?>
