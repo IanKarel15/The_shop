@@ -39,10 +39,49 @@ class ProductController {
 
         if($id) {
             $product = new Product(getPDO());
-            $productData = $product->find($id);
+            $productData = $product->getProductDetails($id);
         }
 
         return view('admin/form', ['product' => $productData]);
+    }
+
+     public function store($data, $files) {
+
+        $product = new Product(getPDO());
+
+        $imageName = uploadImage($files['image'], 'img');
+
+        $data['image'] = $imageName;
+
+        $product->add($data);
+
+        return redirect('/admin/index');
+
+    }
+
+    public function update($id, $post, $files)
+    {
+        $product = new Product(getPDO());
+
+        $current = $product->find($id);
+        $imageName = $current->image; 
+
+        if (!empty($files['image']['name'])) {
+
+            $newImage = uploadImage($files['image'], 'img');
+
+            if ($newImage) {
+                deleteImage('img', $current->image);
+                $imageName = $newImage;
+            }
+        }
+
+        $post['id'] = $id;
+        $post['image'] = $imageName;
+
+        $product->edit( $id, );
+
+        return redirect('admin/index');
     }
 
 

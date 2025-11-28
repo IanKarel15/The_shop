@@ -41,6 +41,17 @@ if($route === 'admin/products/create') {
   return (new ProductController())->form();
 }
 
+if (preg_match('#^admin/products/edit/(\d+)$#', $route, $matches)) {
+    $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
+   
+    if(($_POST['_method'] ?? '') === 'PUT') {
+        return (new ProductController())->update($productId, $_POST, $_FILES);
+    }
+
+    return (new ProductController())->form($productId);
+}
+
+
 
 
 
