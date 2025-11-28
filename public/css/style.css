@@ -190,9 +190,8 @@ header {
     gap: 80px; 
 }
 
-/* --- Columna Imagen --- */
 .columna-imagen {
-    flex: 1; /* Ocupa la mitad */
+    flex: 1; 
     display: flex;
     justify-content: flex-end; 
 }
@@ -204,7 +203,6 @@ header {
     object-fit: contain;
 }
 
-/* --- Columna Info --- */
 .columna-info {
     flex: 1;
     display: flex;
@@ -229,7 +227,6 @@ header {
     margin-bottom: 80px; 
 }
 
-/* --- Sección Tallas --- */
 .seccion-tallas {
     margin-bottom: 80px; 
 }
@@ -264,7 +261,6 @@ header {
     transform: scale(1.1);
 }
 
-/* --- Botón Agregar --- */
 .btn-agregar-carrito {
     background-color: var(--azulfuerte);
     color: var(--f-blanco);
@@ -413,7 +409,7 @@ header {
     background-color: var(--azulfuerte);
     color: var(--f-blanco);
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 15px;
     text-decoration: none;
     font-size: 14px;
     letter-spacing: 1px;

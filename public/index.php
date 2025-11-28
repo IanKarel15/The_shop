@@ -1,6 +1,6 @@
 <?php 
 
-require_once __DIR__ . '/../src/helpers/functions.php';
+require __DIR__ . '/../src/helpers/functions.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\ProductController;
@@ -30,6 +30,15 @@ if($route === 'admin/index') {
 if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
     $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
     return (new ProductController())->delete($productId);
+}
+
+if($route === 'admin/products/create') {
+
+  if($method === 'POST') {
+    return (new ProductController())->store($_POST, $_FILES);
+  }
+
+  return (new ProductController())->form();
 }
 
 

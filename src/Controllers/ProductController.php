@@ -34,6 +34,17 @@ class ProductController {
         return redirect('/admin/index');
     }
 
+    public function form($id = null) {
+        $productData = null;
+
+        if($id) {
+            $product = new Product(getPDO());
+            $productData = $product->find($id);
+        }
+
+        return view('admin/form', ['product' => $productData]);
+    }
+
 
 }
 
