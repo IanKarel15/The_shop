@@ -26,4 +26,30 @@ function redirect($path) {
     exit;
 }
 
+function uploadImage($file, $folder) {
+    // Si no hay archivo o hubo error, no guardar nada
+    if (!isset($file) || $file['error'] !== UPLOAD_ERR_OK) {
+        return null;
+    }
+
+   
+    $uploadDir = __DIR__ . "/../../public/$folder/";
+
+    // Crear carpeta si no existe
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $originalName = $file['name'];
+    $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+
+    $imageName = uniqid($folder . '_') . '.' . $extension;
+
+    // Mover archivo
+    $tmpPath = $file['tmp_name'];
+    move_uploaded_file($tmpPath, $uploadDir . $imageName);
+
+    return $imageName;
+}
+
 ?>

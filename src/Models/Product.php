@@ -150,7 +150,9 @@ class Product {
         $stmt->execute([
             'name' => $name,
             'price' => $price,
-            'id' => $id
+            'id' => $id,
+            'description' => $description,
+            'image' => $imageURL
         ]);
     }
 }

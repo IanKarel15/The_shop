@@ -45,15 +45,15 @@ class ProductController {
         return view('admin/form', ['product' => $productData]);
     }
 
-     public function store($data, $files) {
+    public function store($data, $files) {
 
         $product = new Product(getPDO());
 
-        $imageName = uploadImage($files['image'], 'img');
+        $imageName = uploadImage($files['image'], 'assets');
 
         $data['image'] = $imageName;
 
-        $product->add($data);
+        $product->add($data['name'], $data['price'], $data['description'], $data['image']);
 
         return redirect('/admin/index');
 
@@ -63,23 +63,21 @@ class ProductController {
     {
         $product = new Product(getPDO());
 
-        $current = $product->find($id);
-        $imageName = $current->image; 
+        $current = $product->getProductDetails($id);
+        $imageName = $current->imageURL; 
 
         if (!empty($files['image']['name'])) {
 
             $newImage = uploadImage($files['image'], 'img');
 
             if ($newImage) {
-                deleteImage('img', $current->image);
+                deleteImage('img', $current->imageURL);
                 $imageName = $newImage;
             }
         }
+       
 
-        $post['id'] = $id;
-        $post['image'] = $imageName;
-
-        $product->edit( $id, );
+       $product->edit($post['id'],$post['name'], $post['price'], $post['description'], $imageName);
 
         return redirect('admin/index');
     }

@@ -1,3 +1,5 @@
+<!-- Este archivo es el enrutador, dependiendo lo que reciba en el route mandara una vista -->
+
 <?php 
 
 require __DIR__ . '/../src/helpers/functions.php';
@@ -8,13 +10,14 @@ use App\Controllers\ProductController;
 $route = trim($_GET['route'] ?? '', '/');
 $method = $_SERVER['REQUEST_METHOD'];
 
+//Cuando el route venga vacio o con home lo mandaremos al index donde se muestran todos los productos 
 if ($route === '' || $route === 'home') { 
    if($method === 'GET') {
-    // CORREGIDO: Usamos ProductController
     return (new ProductController())->index();
   }
 }
 
+//Cuando el route venga con un id lo mandaremos a mostrar los detalles del producto
 if (preg_match('#^products/(\d+)$#', $route, $matches)) {
   $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
 
@@ -23,15 +26,18 @@ if (preg_match('#^products/(\d+)$#', $route, $matches)) {
   }
 }
 
+//Cuando el route contenga admin/index lo mandaremos a la pantalla del administrador
 if($route === 'admin/index') {
   return (new ProductController())->adminIndex();
 }
 
+//Cuando el route venga con delete y un id lo mandaremos a eliminar el producto 
 if (preg_match('#^admin/products/delete/(\d+)$#', $route, $matches)) {
     $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
     return (new ProductController())->delete($productId);
 }
 
+//Cuando el route venga con create y si viene con el metodo post guardaremos el producto en la base de datos 
 if($route === 'admin/products/create') {
 
   if($method === 'POST') {
@@ -41,6 +47,7 @@ if($route === 'admin/products/create') {
   return (new ProductController())->form();
 }
 
+//Cuando el route venga con un edit lo mandamos  al metodo update preguntando si en el metodo trae un put, si no mandamos a editarlo 
 if (preg_match('#^admin/products/edit/(\d+)$#', $route, $matches)) {
     $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
    
@@ -54,7 +61,7 @@ if (preg_match('#^admin/products/edit/(\d+)$#', $route, $matches)) {
 
 
 
-
+//Cuando el route de error 404 mandamos a la pantalla de error
 http_response_code(404);
 return view('errors/error');
   

@@ -20,9 +20,9 @@
             <?php endif; ?>
 
         <div class="columna-info">
-             <input type="text" name="name" required value="<?= $product->name ?? '' ?>" class="">
-             <input type="number" name="price" required value="<?= $product->price ?? '' ?>" class="">
-
+            <input type="text" name="name" required value="<?= $product->name ?? '' ?>" class="">
+            <input type="number" name="price" required value="<?= $product->price ?? '' ?>" class="">
+            <textarea name="description" required value="<?= $product->description ?? '' ?>" class=""></textarea>
             <div class="seccion-tallas">
                 <span class="label-tallas">TALLAS</span>
                 <div class="opciones-tallas">
@@ -34,7 +34,9 @@
                 </div>
             </div>
 
-            <button class="btn-agregar-carrito">AÑADIR</button>
+            <button type="submit">
+                <?= $product ? 'Actualizar' : 'Guardar' ?>
+            </button>
         </div>
     </form>
 </main>
