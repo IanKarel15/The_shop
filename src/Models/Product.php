@@ -31,6 +31,8 @@ class Product {
                 $product->id = $row['id']; // id
                 $product->name = $row['name']; // nombre del produto
                 $product->price = $row['price']; // precio del producto
+                $product->description = $row['description'];
+                $product->imageURL = $row['image'];
                 //$product->image = $row['image']; // imagen del producto (pendiente, no lo hemos pensado bien aún)
                 $products[] = $product;
             }
@@ -123,19 +125,26 @@ class Product {
         }
     }
 
-    public function add ($name, $price) {
-        $sql = "INSERT INTO clothesitem (name, price)
-        VALUES (:name, :price)";
+    public function add ($name, $price, $description, $imageURL) {
+        $sql = "INSERT INTO clothesitem (name, price, image, description)
+        VALUES (:name, :price, :image, :description)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['name' => $name, 'price' => $price]);
+        $stmt->execute([
+            'name' => $name, 
+            'price' => $price,
+            'image' => $imageURL,
+            'description' => $description
+        ]);
     }
 
-    public function edit ($id, $name, $price) {
+    public function edit ($id, $name, $price, $description, $imageURL) {
         $sql = 
         "UPDATE clothesitem 
             SET 
                 name = :name,
-                price = :price
+                price = :price,
+                description = :description,
+                image = :image
             WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
@@ -146,5 +155,7 @@ class Product {
     }
 }
 // print_r((new Product())->getProductDetails(2));
+// (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
+// print_r((new Product())->getAll());
 
 ?>
