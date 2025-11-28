@@ -118,6 +118,13 @@ class Product {
         }
     }
 
-}
+    public function add ($name, $price) {
+        $sql = "INSERT INTO clothesitem (name, price)
+        VALUES (:name, :price)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['name' => $name, 'price' => $price]);
+    }
 
+}
+(new Product())->add("Pantalón", 500);
 ?>
