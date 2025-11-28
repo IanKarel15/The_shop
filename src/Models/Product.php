@@ -125,6 +125,20 @@ class Product {
         $stmt->execute(['name' => $name, 'price' => $price]);
     }
 
+    public function edit ($id, $name, $price) {
+        $sql = 
+        "UPDATE clothesitem 
+            SET 
+                name = :name,
+                price = :price
+            WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'name' => $name,
+            'price' => $price,
+            'id' => $id
+        ]);
+    }
 }
-(new Product())->add("Pantalón", 500);
+// (new Product())->edit(1, "Pantalonsico", 555500);
 ?>
