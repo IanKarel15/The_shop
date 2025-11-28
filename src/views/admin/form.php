@@ -22,7 +22,7 @@
         <div class="columna-info">
             <input type="text" name="name" required value="<?= $product->name ?? '' ?>" class="">
             <input type="number" name="price" required value="<?= $product->price ?? '' ?>" class="">
-            <textarea name="description" required value="<?= $product->description ?? '' ?>" class=""></textarea>
+            <textarea name="description" required class=""><?= $product->description ?? '' ?></textarea>
             <div class="seccion-tallas">
                 <span class="label-tallas">TALLAS</span>
                 <div class="opciones-tallas">
