@@ -13,14 +13,16 @@
     <header>
         <div class="top-bar">
             <div class="logo-container">
-                <img class="logo" src="<?=ASSETS_PATH?>/logo.png" alt="The Shop Logo">
+                <a href="<?=BASE_PATH?>/home">
+                    <img class="logo" src="<?=ASSETS_PATH?>/logo.png" alt="The Shop Logo">
+                </a>
             </div>
             
             <div class="auth-links">
                 <?php if(isAuthenticated()): ?>
-                    <li><a href="<?=BASE_PATH?>/logout">Cerrar sesión</a></li>
+                    <li><a class="auth-link" href="<?=BASE_PATH?>/logout">Cerrar sesión</a></li>
                 <?php else: ?>
-                    <li><a href="<?=BASE_PATH?>/login">Iniciar sesión</a></li>
+                    <li><a class="auth-link" href="<?=BASE_PATH?>/login">Iniciar sesión</a></li>
                 <?php endif; ?>
             </div>
         </div>

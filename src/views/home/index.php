@@ -9,7 +9,6 @@
             </nav>
 
             <div class="iconos-container">
-                <a href="buscar.html"><img src="<?=ASSETS_PATH?>/lupa.png" alt="Buscar"></a>
                 <a href="perfil.html"><img src="<?=ASSETS_PATH?>/perfil.png" alt="Perfil"></a>
                 <a href="carrito.html"><img class="icono-carrito" src="<?=ASSETS_PATH?>/carrito.png" alt="Carrito"></a>
             </div>
@@ -23,7 +22,9 @@
     ?>
     <div class="producto">
         <a href="<?=BASE_PATH?>/products/<?=$product->id?>">
-            <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>" alt="<?= htmlspecialchars($product->name ?? 'Producto') ?>">
+            <div class="image-wrapper"> 
+                <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>" alt="<?= htmlspecialchars($product->name ?? 'Producto') ?>">
+            </div>
         </a>
         <h3><?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?></h3>
         <h2><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></h3>
