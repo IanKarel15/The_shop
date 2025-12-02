@@ -17,7 +17,11 @@
             </div>
             
             <div class="auth-links">
-                <a class="btn-login" href= "<?=BASE_PATH?>/admin/index">INICIAR SESION</a>
+                <?php if(isAuthenticated()): ?>
+                    <li><a href="<?=BASE_PATH?>/logout">Cerrar sesión</a></li>
+                <?php else: ?>
+                    <li><a href="<?=BASE_PATH?>/login">Iniciar sesión</a></li>
+                <?php endif; ?>
             </div>
         </div>
 

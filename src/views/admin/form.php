@@ -16,7 +16,7 @@
 
             <?php if (!empty($product->image)): ?>
                 <p class="">Imagen actual:</p>
-                <img src="<?=BASE_PATH?>/assets/<?= $product->image ?>">
+                <img src="<?=ASSETS_PATH?>/<?= $product->image ?>">
             <?php endif; ?>
 
         <div class="columna-info">

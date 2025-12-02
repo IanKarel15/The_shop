@@ -2,19 +2,44 @@
 
 <?php 
 
+if(session_status() === PHP_SESSION_NONE){
+  session_start();
+}
+
 require __DIR__ . '/../src/helpers/functions.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\ProductController;
+use App\Controllers\AuthController;
 
 $route = trim($_GET['route'] ?? '', '/');
 $method = $_SERVER['REQUEST_METHOD'];
+
+if(str_starts_with($route, "admin/")) {
+    requireAuth();
+}
 
 //Cuando el route venga vacio o con home lo mandaremos al index donde se muestran todos los productos 
 if ($route === '' || $route === 'home') { 
    if($method === 'GET') {
     return (new ProductController())->index();
   }
+}
+
+if($route === 'login') {
+  if($method === 'POST') {
+    return (new AuthController())->attemptLogin($_POST['username'], $_POST['password']);
+  }
+
+  if(!isAuthenticated()) {
+    return view('auth/login');
+  }
+
+  redirect('admin/index');
+}
+
+if($route === 'logout') {
+  return (new AuthController())->logout();
 }
 
 //Cuando el route venga con un id lo mandaremos a mostrar los detalles del producto

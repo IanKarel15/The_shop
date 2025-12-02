@@ -52,4 +52,14 @@ function uploadImage($file, $folder) {
     return $imageName;
 }
 
+function isAuthenticated() {
+    return isset($_SESSION['user_id']);
+}
+
+function requireAuth() {
+    if(!isAuthenticated()) {
+        header("Location: ".BASE_PATH."/login");
+    }
+}
+
 ?>

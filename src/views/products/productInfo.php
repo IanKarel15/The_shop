@@ -21,7 +21,7 @@ require_once '../src/views/layouts/header.php';
 <main class="detalle-producto-container">
     
     <div class="columna-imagen">
-        <img src="<?=ASSETS_PATH?>/img1.png" alt="<?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?>">
+        <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>" alt="<?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?>">
     </div>
 
     <div class="columna-info">
