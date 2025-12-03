@@ -138,8 +138,8 @@ class Product {
     }
 
     // Editar producto
-    // Se tiene que mandar un arreglo con []
-    public function edit ($id, $name, $price, $description, $imageURL, $sizes) {
+    // Se tiene que mandar un arreglo de un arreglo con la id de cada talla del producto y la cantidad de esa talla [['size_id', 'quantity']]
+    public function edit ($id, $name, $price, $description, $imageURL, /*$sizes,*/ $size1,$size2,$size3) {
         
         // Editar campos básicos del producto
         $sql = 
@@ -171,25 +171,41 @@ class Product {
         ]);
 
         // Insertar las tallas y cantidades nuevas
+        // $sql = 
+        // "INSERT INTO stock (clothesitem_id, size_id, quantity)
+        // VALUES
+        //     (:product_id, :size_id, :quantity)"; // se repite por la cantidad de tallas disponibles en el sistema
+        // $stmt = $this->pdo->prepare($sql);
+
+        // foreach ($sizes as $size){
+        //     $stmt->execute([
+        //         'product_id' => $id,
+        //         'size_id' => $size['size_id'],
+        //         'quantity' => $size['quantity']
+        //     ]);
+        // }
+
         $sql = 
         "INSERT INTO stock (clothesitem_id, size_id, quantity)
         VALUES
-            (:product_id, :size_id, :quantity)"; // se repite por la cantidad de tallas disponibles en el sistema
+            (:id, 1, :quantity1), 
+            (:id, 2, :quantity2),
+            (:id, 3, :quantity3)";
         $stmt = $this->pdo->prepare($sql);
 
-        foreach ($sizes as $size){
-            $stmt->execute([
-                'product_id' => $id,
-                'size_id' => $size['size_id'],
-                'quantity' => $size['quantity']
-            ]);
-        }
+        $stmt->execute([
+            'quantity1'=>$size1,
+            'quantity2'=>$size2,
+            'quantity3'=>$size3
+
+        ]);
     }
 }
 // print_r((new Product())->getProductDetails(2));
 // (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
 // print_r((new Product())->getAll());
-// ((new Product())->edit(2, "gogogogo", 9999999, "descerijsdoisajdoaisdjais", "img2.png", 
+
+// ((new Product())->edit(2, "nombre edit", 9999999, "descripcion edit", "img2.png", 
 // [
 //     [
 //         'size_id'=>1,
