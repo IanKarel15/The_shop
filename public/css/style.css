@@ -5,7 +5,6 @@
     --azulfuerte: #181626; 
     --gris-texto: #555555;
     --hover-color: #999;
-    --grisclaro: #BDBEBF;
 }
 
 * {
@@ -232,29 +231,37 @@ header {
 .opciones-tallas {
     display: flex;
     gap: 40px; 
-    padding-left: 10px; 
+    padding-left: 10px;
+    margin-bottom: 40px; 
 }
 
-.talla {
+.talla-item{
+    border:none;
+    background-color:white;
     text-decoration: none;
     color: var(--gris-texto);
-    font-size: 16px;
+    font-size: 22px;
     border-bottom: 1px solid var(--gris-texto);
     padding-bottom: 2px;
     transition: all 0.3s;
 }
 
-.talla:hover {
+.talla-item:hover {
     color: var(--azulfuerte);
     border-bottom-color: var(--azulfuerte);
     transform: scale(1.1);
+}
+
+.talla-item.selected {
+    color: var(--azulfuerte); 
+    transform: scale(1.1);            
 }
 
 .btn-agregar-carrito {
     background-color: var(--azulfuerte);
     color: var(--f-blanco);
     border: none;
-    padding: 18px 60px;
+    padding: 14px 30px;
     font-size: 18px;
     letter-spacing: 6px; 
     border-radius: 30px; 
@@ -267,6 +274,14 @@ header {
 .btn-agregar-carrito:hover {
     background-color: #2a2640; 
     transform: translateY(-2px);
+}
+
+.btn-agregar-carrito:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    transform: none !important; 
+    box-shadow: none;
 }
 
 /* ================= RESPONSIVO (Móvil) ================= */
@@ -648,114 +663,4 @@ header {
 }
 .auth-links:hover {
     transform: scale(1.05);
-}
-
-/* ================= EDITAR-PRODUCTO ================= */
-.detalle-producto-container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 50px;
-    background: var(--f-blanco);
-    border-radius: 20px;
-    display: flex;
-    gap: 50px;
-    align-items: flex-start;
-    color: var(--gris-texto);
-}
-
-.columna-imagen {
-    width: 350px;
-    display: block;
-}
-
-.detalle-producto-container img {
-    width: 350px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-top: 10px;
-}
-
-.columna-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.detalle-producto-container h2 {
-    text-align: center;
-    font-weight: 300;
-    font-size: 26px;
-    letter-spacing: 3px;
-}
-
-.label-tallas {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: var(--gris-texto);
-}
-
-.columna-info input,
-.columna-info textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--grisclaro);
-    border-radius: 25px;
-    background: var(--f-blanco);
-    font-size: 14px;
-    resize: none;
-    outline: none;
-    transition: 0.2s ease-in-out;
-}
-
-.columna-info input:focus,
-.columna-info textarea:focus {
-    background: var(--f-blanco);
-    border-color: var(--gris-texto)
-}
-
-.seccion-tallas {
-    margin-top: 10px;
-}
-
-.opciones-tallas {
-    display: flex;
-    gap: 25px;
-    margin-top: 10px;
-}
-
-.talla {
-    font-size: 15px;
-    letter-spacing: 3px;
-    padding-bottom: 4px;
-    text-decoration: none;
-    color: var(--gris-texto);
-    border-bottom: 1px solid var(--grisclaro);
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.talla:hover {
-    color: var(--azulfuerte);
-    border-color: var(--azulfuerte);
-}
-
-button {
-    display: block;
-    margin: 0 auto;
-    margin-top: 40px;
-    background-color: var(--azulfuerte);;
-    color: var(--f-blanco);;
-    padding: 10px 70px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: all 0.5s;
-}
-
-button:hover {
-    background-color: var(--grisclaro);
-    color: var(--azul-menosfuerte);
 }

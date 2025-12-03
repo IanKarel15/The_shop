@@ -82,13 +82,17 @@ class Product {
             // $this->image = $products[0]['image'];
 
             // Guardar todas las tallas disponibles del producto (solo el texto)
+           $this->sizes = []; 
+        
             foreach ($products as $p) {
-                $this->sizes[] = 
-                [
-                    'size_name' => $p['size_name'],
-                    'quantity'  => $p['quantity']
+            if ($p['size_id'] !== null) {
+                $this->sizes[] = (object) [
+                    'id'   => $p['size_id'],     
+                    'name' => $p['size_name'],   
+                    'quantity' => $p['quantity'] 
                 ];
             }
+        }
 
             return $this;
         } catch (PDOException $e) {

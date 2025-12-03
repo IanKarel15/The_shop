@@ -23,25 +23,62 @@ require_once '../src/views/layouts/header.php';
     <div class="columna-imagen">
         <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>" alt="<?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?>">
     </div>
+    <form action="<?=BASE_PATH?>/carrito/add" method="POST" enctype="multipart/form-data">
+        <?php if ($product): ?>
+            <input type="hidden" name="id" value="<?= $product->id ?>">
+            <input type="hidden" name="size_id" id="selectedSizeId" value="">
+            <input type="hidden" name="quantity" value="1">
+        <?php endif; ?> 
+        
+        <div class="columna-info">
+            <h1 class="titulo-producto"><?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?></h1>
+            <p class="precio-producto"><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></p>
 
-    <div class="columna-info">
-        <h1 class="titulo-producto"><?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?></h1>
-        <p class="precio-producto"><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></p>
-
-        <div class="seccion-tallas">
-            <span class="label-tallas">TALLAS</span>
+            <div class="seccion-tallas">
+                <span class="label-tallas">TALLAS</span>
+            
             <div class="opciones-tallas">
-                <a href="#" class="talla">S</a>
-                <a href="#" class="talla">M</a>
-                <a href="#" class="talla">L</a>
-                <a href="#" class="talla">XL</a>
-                <a href="#" class="talla">XXL</a>
+               <?php if (!empty($product->sizes)): ?>
+                    <?php foreach ($product->sizes as $size): ?>
+                        <button type="button" class="talla-item" data-id="<?= $size->id ?>">
+                            <?= htmlspecialchars($size->name ?? $size->size) ?> 
+                        </button>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="error-text">No hay tallas disponibles</p>
+                <?php endif; ?>
             </div>
+
+            <p class="descripcion-producto"><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
+            
+            <button type="submit" name="action" value="add_only" class="btn-agregar-carrito btn-disabled" id="btn-agregar" disabled>
+                AGREGAR AL CARRITO
+            </button>
         </div>
-
-        <p class="descripcion-producto"><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
-
-        <button class="btn-agregar-carrito">AGREGAR</button>
-    </div>
-
+    </form>
 </main>
+
+
+<script>
+    //esto es para que cuando se seleccione una talla de desabiliten las demas y se habilite el boton de agregar
+document.addEventListener('DOMContentLoaded', function() {
+    const botonesTalla = document.querySelectorAll('.talla-item');
+    const inputSizeId = document.getElementById('selectedSizeId');
+    const btnAgregar = document.getElementById('btn-agregar');
+
+    botonesTalla.forEach(boton => {
+        boton.addEventListener('click', function() {
+            
+            botonesTalla.forEach(b => b.classList.remove('selected'));
+
+            this.classList.add('selected');
+           
+            inputSizeId.value = this.dataset.id;
+
+            btnAgregar.disabled = false;
+    
+            btnAgregar.classList.remove('btn-disabled');
+        });
+    });
+});
+</script>
