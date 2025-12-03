@@ -125,7 +125,7 @@ class Product {
         }
     }
 
-    public function add ($name, $price, $description, $imageURL) {
+    public function add ($name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL) {
         $sql = "INSERT INTO clothesitem (name, price, image, description)
         VALUES (:name, :price, :image, :description)";
         $stmt = $this->pdo->prepare($sql);
@@ -134,6 +134,21 @@ class Product {
             'price' => $price,
             'image' => $imageURL,
             'description' => $description
+        ]);
+
+        $sql = 
+        "INSERT INTO stock (clothesitem_id, size_id, quantity)
+        VALUES
+            (:id, 1, :quantity1), 
+            (:id, 2, :quantity2),
+            (:id, 3, :quantity3)";
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            'quantity1'=>$sizeS,
+            'quantity2'=>$siseM,
+            'quantity3'=>$sizeL,
+            'id'=>$id
         ]);
     }
 
@@ -196,8 +211,8 @@ class Product {
         $stmt->execute([
             'quantity1'=>$size1,
             'quantity2'=>$size2,
-            'quantity3'=>$size3
-
+            'quantity3'=>$size3,
+            'id'=>$id
         ]);
     }
 }
