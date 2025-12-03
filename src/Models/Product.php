@@ -245,9 +245,52 @@ class Product {
             $pdo->rollback();
         }
        
+    }
+    
+    public function filterByCategory ($filter) {
+        $sql = "SELECT * FROM clothesitem WHERE category = :filter";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['filter'=>$filter]);
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+         foreach($products as $p) {
+            $product = new Product($this->pdo); //Crear objeto de clase Product y después añadir sus atributos
+            
+            $product->id = $p['id']; // id
+            $product->name = $p['name']; // nombre del produto
+            $product->price = $p['price']; // precio del producto
+            $product->description = $p['description'];
+            $product->imageURL = $p['image'];
+
+            $products[] = $product;
+        }
+
+        return $products;
 
     }
 
+    public function search ($filter)  {
+        $sql = "SELECT * FROM clothesitem WHERE name LIKE :filter";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['filter'=>"%".$filter."%"]);
+
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($products as $p) {
+            $product = new Product($this->pdo); //Crear objeto de clase Product y después añadir sus atributos
+            
+            $product->id = $p['id']; // id
+            $product->name = $p['name']; // nombre del produto
+            $product->price = $p['price']; // precio del producto
+            $product->description = $p['description'];
+            $product->imageURL = $p['image'];
+
+            $products[] = $product;
+        }
+
+        return $products;
+
+    }
 
 }
 // print_r((new Product())->getProductDetails(2));
@@ -268,5 +311,7 @@ class Product {
 // ]));
 
 // print_r(((new Product())->delete(2)));
+// print_r(((new Product())->filterByCategory("shirt")));
+// print_r(((new Product())->search("s")));
 
 ?>
