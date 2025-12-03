@@ -4,8 +4,9 @@
 
 
 <main class="detalle-producto-container">
-
-    <?= $product ? 'Editar producto' : 'Nuevo producto' ?>
+    <h2 class="subtitulo-form">
+        <?= $product ? 'Editar producto' : 'Nuevo producto' ?>
+    </h2>
     <form action="<?=BASE_PATH?>/admin/products<?= $product ? '/edit/'.$product->id : '/create'?>" method="post" enctype="multipart/form-data">
         <?php if ($product): ?>
             <input type="hidden" name="id" value="<?= $product->id ?>">
