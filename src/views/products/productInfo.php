@@ -27,7 +27,6 @@ require_once '../src/views/layouts/header.php';
     <div class="columna-info">
         <h1 class="titulo-producto"><?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?></h1>
         <p class="precio-producto"><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></p>
-        <p class=""><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
 
         <div class="seccion-tallas">
             <span class="label-tallas">TALLAS</span>
@@ -39,6 +38,8 @@ require_once '../src/views/layouts/header.php';
                 <a href="#" class="talla">XXL</a>
             </div>
         </div>
+
+        <p class="descripcion-producto"><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
 
         <button class="btn-agregar-carrito">AGREGAR</button>
     </div>
