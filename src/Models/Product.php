@@ -59,7 +59,8 @@ class Product {
                         s.id AS size_id,
                         s.size AS size_name,
                         ci.description AS clothesitem_description,
-                        ci.image AS clothesitem_image
+                        ci.image AS clothesitem_image,
+                        cis.quantity AS quantity
                     FROM clothesitem ci
                     LEFT JOIN stock cis ON ci.id = cis.clothesitem_id
                     LEFT JOIN size s ON cis.size_id = s.id
@@ -82,7 +83,11 @@ class Product {
 
             // Guardar todas las tallas disponibles del producto (solo el texto)
             foreach ($products as $p) {
-                $this->sizes[] = $p['size_name'];
+                $this->sizes[] = 
+                [
+                    'size_name' => $p['size_name'],
+                    'quantity'  => $p['quantity']
+                ];
             }
 
             return $this;
@@ -129,7 +134,7 @@ class Product {
         }
     }
 
-    public function add ($name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL, $category) {
+    public function add ($name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL, $sizeXL, $sizeXXL, $category) {
         $sql = "INSERT INTO clothesitem (name, price, image, description, category) -- Por ahora la categoría es constante
         VALUES (:name, :price, :image, :description, :category)";
         $stmt = $this->pdo->prepare($sql);
@@ -159,7 +164,7 @@ class Product {
 
     // Editar producto
     // Se tiene que mandar un arreglo de un arreglo con la id de cada talla del producto y la cantidad de esa talla [['size_id', 'quantity']]
-    public function edit ($id, $name, $price, $description, $category, $imageURL, /*$sizes,*/ $size1,$size2,$size3) {
+    public function edit ($id, $name, $price, $description, $category, $imageURL, /*$sizes,*/ $size1,$size2,$size3,$size4,$size5) {
         
         // Editar campos básicos del producto
         $sql = 
@@ -212,13 +217,17 @@ class Product {
         VALUES
             (:id, 1, :quantity1), 
             (:id, 2, :quantity2),
-            (:id, 3, :quantity3)";
+            (:id, 3, :quantity3),
+            (:id, 4, :quantity4),
+            (:id, 5, :quantity5)";
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute([
             'quantity1'=>$size1,
             'quantity2'=>$size2,
             'quantity3'=>$size3,
+            'quantity4'=>$size4,
+            'quantity5'=>$size5,
             'id'=>$id
         ]);
     }
@@ -293,7 +302,7 @@ class Product {
     }
 
 }
-// print_r((new Product())->getProductDetails(2));
+// print_r((new Product())->getProductDetails(4));
 // (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
 // print_r((new Product())->getAll());
 // ((new Product())->buy(2,1));
