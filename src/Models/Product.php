@@ -99,12 +99,16 @@ class Product {
             // Iniciamos la transacción
             $this->pdo->beginTransaction();
 
-            // Borrar relaciones en 'clothesitem_size' 
-            $stmtSizes = $this->pdo->prepare("DELETE FROM clothesitem_size WHERE clothesitem_id = ?");
+            // Borrar relaciones en el carrito
+            $stmtSizes = $this->pdo->prepare("DELETE FROM cart_clothesitem WHERE clothesitem_id = ?");
             $stmtSizes->execute([$id]);
 
+            // // Borrar relaciones en tallas 
+            // Ya no se usa la tabla tallas
+            // $stmtSizes = $this->pdo->prepare("DELETE FROM clothesitem_size WHERE clothesitem_id = ?");
+            // $stmtSizes->execute([$id]);
+
             // Borrar relaciones en 'stock'
-            
             $stmtStock = $this->pdo->prepare("DELETE FROM stock WHERE clothesitem_id = ?");
             $stmtStock->execute([$id]);
 
@@ -262,5 +266,7 @@ class Product {
 //         'quantity'=>666
 //     ]
 // ]));
+
+// print_r(((new Product())->delete(2)));
 
 ?>
