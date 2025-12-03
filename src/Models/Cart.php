@@ -23,7 +23,8 @@ class Cart {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'product_id' => $product_id,
-            'quantity' => $quantity
+            'quantity' => $quantity,
+            'size_id' => $size_id
         ]);
         $rc = $stmt->rowCount();
 
@@ -46,7 +47,7 @@ class Cart {
             FROM cart_clothesitem cc
             INNER JOIN clothesitem c ON cc.clothesitem_id = c.id
             INNER JOIN size s ON cc.size_id = s.id -- JOIN con la id de la talla en el carrito y la id de la talla en la tabla tallas
-            WHERE cc.cart_id = 1;; -- **Por ahora es 1 porque el carrito es global
+            WHERE cc.cart_id = 1; -- **Por ahora es 1 porque el carrito es global
         ";
 
         $stmt = $this->pdo->prepare($sql);
