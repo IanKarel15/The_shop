@@ -271,10 +271,10 @@ class Product {
             $product->description = $p['description'];
             $product->imageURL = $p['image'];
 
-            $products[] = $product;
+            $productObjects[] = $product;
         }
 
-        return $products;
+        return $productObjects;
 
     }
 
@@ -320,7 +320,7 @@ class Product {
 // ]));
 
 // print_r(((new Product())->delete(2)));
-// print_r(((new Product())->filterByCategory("shirt")));
+// print_r(((new Product())->filterByCategory("shirts")));
 // print_r(((new Product())->search("s")));
 
 ?>
