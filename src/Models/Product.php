@@ -125,15 +125,16 @@ class Product {
         }
     }
 
-    public function add ($name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL) {
-        $sql = "INSERT INTO clothesitem (name, price, image, description)
-        VALUES (:name, :price, :image, :description)";
+    public function add ($name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL, $category) {
+        $sql = "INSERT INTO clothesitem (name, price, image, description, category) -- Por ahora la categoría es constante
+        VALUES (:name, :price, :image, :description, :category)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'name' => $name, 
             'price' => $price,
             'image' => $imageURL,
-            'description' => $description
+            'description' => $description,
+            'category' => $category
         ]);
 
         $sql = 
@@ -154,7 +155,7 @@ class Product {
 
     // Editar producto
     // Se tiene que mandar un arreglo de un arreglo con la id de cada talla del producto y la cantidad de esa talla [['size_id', 'quantity']]
-    public function edit ($id, $name, $price, $description, $imageURL, /*$sizes,*/ $size1,$size2,$size3) {
+    public function edit ($id, $name, $price, $description, $category, $imageURL, /*$sizes,*/ $size1,$size2,$size3) {
         
         // Editar campos básicos del producto
         $sql = 
@@ -163,7 +164,8 @@ class Product {
                 name = :name,
                 price = :price,
                 description = :description,
-                image = :image
+                image = :image,
+                category = :category
             WHERE id = :id;";
 
         $stmt = $this->pdo->prepare($sql);
@@ -171,6 +173,7 @@ class Product {
             'name' => $name,
             'price' => $price,
             'description' => $description,
+            'category' => $category,
             'image' => $imageURL,
             'id' => $id
         ]);
@@ -217,18 +220,27 @@ class Product {
     }
 
     public function buy($product_id, $size_id) {
-        $sql = "UPDATE stock s
+        try {
+            $this->pdo->beginTransaction();
+            $sql = 
+            "UPDATE stock s
                 JOIN cart_clothesitem cart
                     ON s.clothesitem_id = cart.clothesitem_id
                     AND s.size_id = cart.size_id
                 SET s.quantity = GREATEST(s.quantity - cart.quantity, 0)
                 WHERE cart.clothesitem_id = :clothesitem_id AND s.size_id = :size_id;";
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([
-            'clothesitem_id'=>$product_id,
-            'size_id'=>$size_id
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                'clothesitem_id'=>$product_id,
+                'size_id'=>$size_id
         ]);
+
+        $this->pdo->commit();
+        } catch (Exception $e) {
+            $pdo->rollback();
+        }
+       
 
     }
 
