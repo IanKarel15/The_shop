@@ -76,10 +76,14 @@ class Cart {
         }
     }
 
-    public function delete ($product_id) {
-        $sql = "DELETE FROM clothesitem WHERE id = :id";
+    // Eliminar producto con la id del producto y la talla a eliminar del producto en el carrito
+    public function delete ($product_id, $size_id) {
+        $sql = "DELETE FROM cart_clothesitem WHERE clothesitem_id = :product_id AND size_id = :size_id";
         $stmt = $this->pdo->prepdare($sql);
-        $stmt->execute(['id' => $product_id]);
+        $stmt->execute([
+            'product_id' => $product_id,
+            'size_id' => $size_id
+        ]);
         
         if ($stmt->row_count()){
             return true; // Producto eliminado

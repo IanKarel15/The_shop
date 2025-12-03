@@ -215,10 +215,29 @@ class Product {
             'id'=>$id
         ]);
     }
+
+    public function buy($product_id, $size_id) {
+        $sql = "UPDATE stock s
+                JOIN cart_clothesitem cart
+                    ON s.clothesitem_id = cart.clothesitem_id
+                    AND s.size_id = cart.size_id
+                SET s.quantity = GREATEST(s.quantity - cart.quantity, 0)
+                WHERE cart.clothesitem_id = :clothesitem_id AND s.size_id = :size_id;";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'clothesitem_id'=>$product_id,
+            'size_id'=>$size_id
+        ]);
+
+    }
+
+
 }
 // print_r((new Product())->getProductDetails(2));
 // (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
 // print_r((new Product())->getAll());
+// ((new Product())->buy(2,1));
 
 // ((new Product())->edit(2, "nombre edit", 9999999, "descripcion edit", "img2.png", 
 // [
