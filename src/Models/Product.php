@@ -61,7 +61,7 @@ class Product {
                         ci.description AS clothesitem_description,
                         ci.image AS clothesitem_image
                     FROM clothesitem ci
-                    LEFT JOIN clothesitem_size cis ON ci.id = cis.clothesitem_id
+                    LEFT JOIN stock cis ON ci.id = cis.clothesitem_id
                     LEFT JOIN size s ON cis.size_id = s.id
                     WHERE ci.id = :id;";
             $stmt = $this->pdo->prepare($sql);
@@ -99,12 +99,16 @@ class Product {
             // Iniciamos la transacción
             $this->pdo->beginTransaction();
 
-            // Borrar relaciones en 'clothesitem_size' 
-            $stmtSizes = $this->pdo->prepare("DELETE FROM clothesitem_size WHERE clothesitem_id = ?");
+            // Borrar relaciones en el carrito
+            $stmtSizes = $this->pdo->prepare("DELETE FROM cart_clothesitem WHERE clothesitem_id = ?");
             $stmtSizes->execute([$id]);
 
+            // // Borrar relaciones en tallas 
+            // Ya no se usa la tabla tallas
+            // $stmtSizes = $this->pdo->prepare("DELETE FROM clothesitem_size WHERE clothesitem_id = ?");
+            // $stmtSizes->execute([$id]);
+
             // Borrar relaciones en 'stock'
-            
             $stmtStock = $this->pdo->prepare("DELETE FROM stock WHERE clothesitem_id = ?");
             $stmtStock->execute([$id]);
 
@@ -125,39 +129,144 @@ class Product {
         }
     }
 
-    public function add ($name, $price, $description, $imageURL) {
-        $sql = "INSERT INTO clothesitem (name, price, image, description)
-        VALUES (:name, :price, :image, :description)";
+    public function add ($name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL, $category) {
+        $sql = "INSERT INTO clothesitem (name, price, image, description, category) -- Por ahora la categoría es constante
+        VALUES (:name, :price, :image, :description, :category)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'name' => $name, 
             'price' => $price,
             'image' => $imageURL,
-            'description' => $description
+            'description' => $description,
+            'category' => $category
+        ]);
+
+        $sql = 
+        "INSERT INTO stock (clothesitem_id, size_id, quantity)
+        VALUES
+            (:id, 1, :quantity1), 
+            (:id, 2, :quantity2),
+            (:id, 3, :quantity3)";
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            'quantity1'=>$sizeS,
+            'quantity2'=>$siseM,
+            'quantity3'=>$sizeL,
+            'id'=>$id
         ]);
     }
 
-    public function edit ($id, $name, $price, $description, $imageURL) {
+    // Editar producto
+    // Se tiene que mandar un arreglo de un arreglo con la id de cada talla del producto y la cantidad de esa talla [['size_id', 'quantity']]
+    public function edit ($id, $name, $price, $description, $category, $imageURL, /*$sizes,*/ $size1,$size2,$size3) {
+        
+        // Editar campos básicos del producto
         $sql = 
-        "UPDATE clothesitem 
-            SET 
+        "UPDATE clothesitem
+            SET
                 name = :name,
                 price = :price,
                 description = :description,
-                image = :image
-            WHERE id = :id";
+                image = :image,
+                category = :category
+            WHERE id = :id;";
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'name' => $name,
             'price' => $price,
-            'id' => $id,
             'description' => $description,
-            'image' => $imageURL
+            'category' => $category,
+            'image' => $imageURL,
+            'id' => $id
+        ]);
+
+        // Eliminar registros actuales de las tallas del producto
+        $sql = 
+        "DELETE FROM stock
+        WHERE clothesitem_id = :id;";
+            
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'id' => $id
+        ]);
+
+        // Insertar las tallas y cantidades nuevas
+        // $sql = 
+        // "INSERT INTO stock (clothesitem_id, size_id, quantity)
+        // VALUES
+        //     (:product_id, :size_id, :quantity)"; // se repite por la cantidad de tallas disponibles en el sistema
+        // $stmt = $this->pdo->prepare($sql);
+
+        // foreach ($sizes as $size){
+        //     $stmt->execute([
+        //         'product_id' => $id,
+        //         'size_id' => $size['size_id'],
+        //         'quantity' => $size['quantity']
+        //     ]);
+        // }
+
+        $sql = 
+        "INSERT INTO stock (clothesitem_id, size_id, quantity)
+        VALUES
+            (:id, 1, :quantity1), 
+            (:id, 2, :quantity2),
+            (:id, 3, :quantity3)";
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            'quantity1'=>$size1,
+            'quantity2'=>$size2,
+            'quantity3'=>$size3,
+            'id'=>$id
         ]);
     }
+
+    public function buy($product_id, $size_id) {
+        try {
+            $this->pdo->beginTransaction();
+            $sql = 
+            "UPDATE stock s
+                JOIN cart_clothesitem cart
+                    ON s.clothesitem_id = cart.clothesitem_id
+                    AND s.size_id = cart.size_id
+                SET s.quantity = GREATEST(s.quantity - cart.quantity, 0)
+                WHERE cart.clothesitem_id = :clothesitem_id AND s.size_id = :size_id;";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                'clothesitem_id'=>$product_id,
+                'size_id'=>$size_id
+        ]);
+
+        $this->pdo->commit();
+        } catch (Exception $e) {
+            $pdo->rollback();
+        }
+       
+
+    }
+
+
 }
 // print_r((new Product())->getProductDetails(2));
 // (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
 // print_r((new Product())->getAll());
+// ((new Product())->buy(2,1));
+
+// ((new Product())->edit(2, "nombre edit", 9999999, "descripcion edit", "img2.png", 
+// [
+//     [
+//         'size_id'=>1,
+//         'quantity'=>1
+//     ],
+//     [
+//         'size_id'=>2,
+//         'quantity'=>666
+//     ]
+// ]));
+
+// print_r(((new Product())->delete(2)));
 
 ?>

@@ -199,11 +199,21 @@ header {
     margin-bottom: 15px;
 }
 
+.descripcion-producto{
+    font-size: 14px;
+    color: var(--gris-texto);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-bottom: 40px; 
+    max-width: 300px;
+    overflow-wrap: break-word; 
+}
 .precio-producto {
     font-size: 20px;
     color: var(--gris-texto);
     letter-spacing: 2px;
-    margin-bottom: 80px; 
+    margin-bottom: 50px; 
 }
 
 .seccion-tallas {
@@ -574,7 +584,7 @@ header {
 }
 
 .styled-input::placeholder {
-    color: #ccc;
+    color: #a4a4a4;
     font-weight: normal;
 }
 
@@ -616,8 +626,7 @@ header {
 }
 
 .auth-links{
-    width: 15%;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
     list-style: none;
@@ -633,7 +642,7 @@ header {
 }
 
 .auth-link{
-    text-justify: center;
+    text-align: center;
     color: var(--azulfuerte); 
     text-decoration: none;
 }

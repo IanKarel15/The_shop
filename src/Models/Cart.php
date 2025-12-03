@@ -15,15 +15,16 @@ class Cart {
     }
 
     // Añade el producto al carrito con el id, si un producto ya está en el carrito se sumará la cantidad añadida de ese producto al carrito
-    public function add($product_id, $size, $quantity) {
-        $sql = "INSERT INTO cart_clothesitem (cart_id, clothesitem_id, quantity)
-                VALUES (1, :product_id, :quantity)
+    public function add($product_id, $size_id, $quantity) {
+        $sql = "INSERT INTO cart_clothesitem (cart_id, clothesitem_id, quantity, size_id)
+                VALUES (1, :product_id, :quantity :size_id)
                 ON DUPLICATE KEY UPDATE quantity = quantity + :quantity;
             ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'product_id' => $product_id,
-            'quantity' => $quantity
+            'quantity' => $quantity,
+            'size_id' => $size_id
         ]);
         $rc = $stmt->rowCount();
 
@@ -40,6 +41,7 @@ class Cart {
                 c.id, -- id del producto
                 c.name, -- nombre del producto
                 c.price, -- precio del producto
+                c.image,
                 s.size, -- nombre de la talla cuya id es la que está en el carrito
                 cc.quantity -- catidad del producto en el carrito
             FROM cart_clothesitem cc
@@ -64,6 +66,7 @@ class Cart {
                 $cart_product->product_price = $p['price'];
                 $cart_product->product_size = $p['size'];
                 $cart_product->product_quantity = $p['quantity'];
+                $cart_product->product_image = $p['image'];
 
                 $cart_products[] = $cart_product;
             }
@@ -73,10 +76,14 @@ class Cart {
         }
     }
 
-    public function delete ($product_id) {
-        $sql = "DELETE FROM clothesitem WHERE id = :id";
+    // Eliminar producto con la id del producto y la talla a eliminar del producto en el carrito
+    public function delete ($product_id, $size_id) {
+        $sql = "DELETE FROM cart_clothesitem WHERE clothesitem_id = :product_id AND size_id = :size_id";
         $stmt = $this->pdo->prepdare($sql);
-        $stmt->execute(['id' => $product_id]);
+        $stmt->execute([
+            'product_id' => $product_id,
+            'size_id' => $size_id
+        ]);
         
         if ($stmt->row_count()){
             return true; // Producto eliminado
@@ -117,7 +124,24 @@ class Cart {
         }
     }
 
+    public function total () {
+        $total = 0;
+        $sql = "SELECT product.price * cart.quantity AS total FROM clothesitem product
+                    JOIN cart_clothesitem cart ON cart.clothesitem_id = product.id
+                    JOIN size s ON cart.size_id = s.id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $prices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($prices AS $price) {
+            $total += $price['total'];
+        }
+
+        return $total;
+    }
+
 }
 
 
 // print_r((new Cart())->buyAll());
+// print_r(((new Cart())->total()));
