@@ -40,6 +40,7 @@ class Cart {
                 c.id, -- id del producto
                 c.name, -- nombre del producto
                 c.price, -- precio del producto
+                c.image,
                 s.size, -- nombre de la talla cuya id es la que está en el carrito
                 cc.quantity -- catidad del producto en el carrito
             FROM cart_clothesitem cc
@@ -64,6 +65,7 @@ class Cart {
                 $cart_product->product_price = $p['price'];
                 $cart_product->product_size = $p['size'];
                 $cart_product->product_quantity = $p['quantity'];
+                $cart_product->product_image = $p['image'];
 
                 $cart_products[] = $cart_product;
             }

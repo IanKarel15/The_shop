@@ -61,7 +61,7 @@ class Product {
                         ci.description AS clothesitem_description,
                         ci.image AS clothesitem_image
                     FROM clothesitem ci
-                    LEFT JOIN clothesitem_size cis ON ci.id = cis.clothesitem_id
+                    LEFT JOIN stock cis ON ci.id = cis.clothesitem_id
                     LEFT JOIN size s ON cis.size_id = s.id
                     WHERE ci.id = :id;";
             $stmt = $this->pdo->prepare($sql);
@@ -137,27 +137,68 @@ class Product {
         ]);
     }
 
-    public function edit ($id, $name, $price, $description, $imageURL) {
+    // Editar producto
+    // Se tiene que mandar un arreglo con []
+    public function edit ($id, $name, $price, $description, $imageURL, $sizes) {
+        
+        // Editar campos básicos del producto
         $sql = 
-        "UPDATE clothesitem 
-            SET 
+        "UPDATE clothesitem
+            SET
                 name = :name,
                 price = :price,
                 description = :description,
                 image = :image
-            WHERE id = :id";
+            WHERE id = :id;";
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'name' => $name,
             'price' => $price,
-            'id' => $id,
             'description' => $description,
-            'image' => $imageURL
+            'image' => $imageURL,
+            'id' => $id
         ]);
+
+        // Eliminar registros actuales de las tallas del producto
+        $sql = 
+        "DELETE FROM stock
+        WHERE clothesitem_id = :id;";
+            
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'id' => $id
+        ]);
+
+        // Insertar las tallas y cantidades nuevas
+        $sql = 
+        "INSERT INTO stock (clothesitem_id, size_id, quantity)
+        VALUES
+            (:product_id, :size_id, :quantity)"; // se repite por la cantidad de tallas disponibles en el sistema
+        $stmt = $this->pdo->prepare($sql);
+
+        foreach ($sizes as $size){
+            $stmt->execute([
+                'product_id' => $id,
+                'size_id' => $size['size_id'],
+                'quantity' => $size['quantity']
+            ]);
+        }
     }
 }
 // print_r((new Product())->getProductDetails(2));
 // (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
 // print_r((new Product())->getAll());
+// ((new Product())->edit(2, "gogogogo", 9999999, "descerijsdoisajdoaisdjais", "img2.png", 
+// [
+//     [
+//         'size_id'=>1,
+//         'quantity'=>1
+//     ],
+//     [
+//         'size_id'=>2,
+//         'quantity'=>666
+//     ]
+// ]));
 
 ?>
