@@ -26,6 +26,24 @@ if ($route === '' || $route === 'home') {
   }
 }
 
+if ($route === 'camisas') {
+  if($method === 'GET') {
+    return (new ProductController())->filterByCategory('shirts');
+  }
+}
+
+if ($route === 'pantalones') {
+  if($method === 'GET') {
+    return (new ProductController())->filterByCategory('pants');
+  }
+}
+
+if ($route === 'accesorios') {
+  if($method === 'GET') {
+    return (new ProductController())->filterByCategory('accesories');
+  }
+}
+
 if($route === 'login') {
   if($method === 'POST') {
     return (new AuthController())->attemptLogin($_POST['username'], $_POST['password']);

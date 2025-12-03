@@ -13,6 +13,12 @@ class ProductController {
         return view('home/index', ['products' => $products]);
     }
 
+    public function filterByCategory ($category) {
+        $products = (new Product())->filterByCategory($category);
+
+        return view('home/index', ['products' => $products]);
+    }
+
     public function show($id) {
         $productModel = new Product(getPDO());
         $product = $productModel->getProductDetails($id);

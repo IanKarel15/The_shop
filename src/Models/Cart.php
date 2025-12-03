@@ -76,10 +76,14 @@ class Cart {
         }
     }
 
-    public function delete ($product_id) {
-        $sql = "DELETE FROM clothesitem WHERE id = :id";
+    // Eliminar producto con la id del producto y la talla a eliminar del producto en el carrito
+    public function delete ($product_id, $size_id) {
+        $sql = "DELETE FROM cart_clothesitem WHERE clothesitem_id = :product_id AND size_id = :size_id";
         $stmt = $this->pdo->prepdare($sql);
-        $stmt->execute(['id' => $product_id]);
+        $stmt->execute([
+            'product_id' => $product_id,
+            'size_id' => $size_id
+        ]);
         
         if ($stmt->row_count()){
             return true; // Producto eliminado
@@ -120,7 +124,24 @@ class Cart {
         }
     }
 
+    public function total () {
+        $total = 0;
+        $sql = "SELECT product.price * cart.quantity AS total FROM clothesitem product
+                    JOIN cart_clothesitem cart ON cart.clothesitem_id = product.id
+                    JOIN size s ON cart.size_id = s.id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $prices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($prices AS $price) {
+            $total += $price['total'];
+        }
+
+        return $total;
+    }
+
 }
 
 
 // print_r((new Cart())->buyAll());
+// print_r(((new Cart())->total()));

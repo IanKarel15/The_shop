@@ -3,9 +3,9 @@
 ?>
 <div class="bottom-bar">
             <nav class="menu-categorias">
-                <a class="link-cat" href="#">CAMISAS</a>
-                <a class="link-cat" href="#">PANTALONES</a>
-                <a class="link-cat" href="#">ACCESORIOS</a>
+                <a class="link-cat" href="camisas">CAMISAS</a>
+                <a class="link-cat" href="pantalones">PANTALONES</a>
+                <a class="link-cat" href="accesorios">ACCESORIOS</a>
             </nav>
 
             <div class="iconos-container">
