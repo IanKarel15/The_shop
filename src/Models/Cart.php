@@ -23,7 +23,8 @@ class Cart {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'product_id' => $product_id,
-            'quantity' => $quantity
+            'quantity' => $quantity,
+            'size_id' => $size_id
         ]);
         $rc = $stmt->rowCount();
 
