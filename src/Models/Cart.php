@@ -124,7 +124,24 @@ class Cart {
         }
     }
 
+    public function total () {
+        $total = 0;
+        $sql = "SELECT product.price * cart.quantity AS total FROM clothesitem product
+                    JOIN cart_clothesitem cart ON cart.clothesitem_id = product.id
+                    JOIN size s ON cart.size_id = s.id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $prices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($prices AS $price) {
+            $total += $price['total'];
+        }
+
+        return $total;
+    }
+
 }
 
 
 // print_r((new Cart())->buyAll());
+// print_r(((new Cart())->total()));
