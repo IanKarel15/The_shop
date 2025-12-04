@@ -125,7 +125,9 @@ class Cart {
 
             $this->pdo->commit();
         } catch (Exception $e) {
-            $pdo->rollback(); // Error, cancelar consultas
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
         }
     }
 

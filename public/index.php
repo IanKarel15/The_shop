@@ -47,6 +47,15 @@ if ($route === 'buy') {
   }
 }
 
+if ($route === 'checkout') {
+  if($method === 'POST') {
+    return (new CarritoController())->comprado();
+  }
+}
+
+
+
+
 if (preg_match('#^carrito/delete/(\d+)/(\d+)$#', $route, $matches)) {
     $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
     $sizeId = filter_var($matches[2], FILTER_SANITIZE_NUMBER_INT);

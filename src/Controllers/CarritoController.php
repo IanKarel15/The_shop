@@ -43,6 +43,15 @@ class CarritoController{
         $total = $carritoModel->total();
         return view('vistasCarrito/pantallaPago', ['products' => $products, 'total' => $total]);
     }
+
+    public function comprado()
+    {
+        $carritoModel = new Cart(getPDO());
+        
+        $carritoModel->buyAll(); 
+
+        return view('vistasCarrito/pantallaPago', ['success' => true]);
+    }
 }
 
 ?>
