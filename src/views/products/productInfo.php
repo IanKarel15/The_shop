@@ -1,5 +1,5 @@
 <?php 
-require_once '../src/views/layouts/header.php';
+require_once 'src/views/layouts/header.php';
 ?>
 
 <div class="bottom-bar">

@@ -1,5 +1,5 @@
 <?php 
-    require_once '../src/views/layouts/header.php';
+    require_once 'src/views/layouts/header.php';
 ?>
 
 <h2 class="subtitulo-form">

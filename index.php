@@ -2,12 +2,21 @@
 
 <?php 
 
-if(session_status() === PHP_SESSION_NONE){
-  session_start();
-}
+// if(session_status() === PHP_SESSION_NONE){
+//     // Configuración de cookies
+//     session_set_cookie_params([
+//         'lifetime' => 0,
+//         'path'     => '/',
+//         'domain'   => 'anuies.net',
+//         'secure'   => true,
+//         'httponly' => true,
+//         'samesite' => 'Lax'
+//     ]);
+//   session_start();
+// }
 
-require __DIR__ . '/../src/helpers/functions.php';
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/src/helpers/functions.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use App\Controllers\ProductController;
 use App\Controllers\AuthController;

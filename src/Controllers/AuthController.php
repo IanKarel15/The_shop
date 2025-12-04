@@ -1,11 +1,11 @@
 <?php 
 
 namespace App\Controllers;
+require_once __DIR__ . '/../helpers/functions.php';
 
 use PDO;
 
 class AuthController {
-
     public function findUserByUsername($username)
     {
         $stmt = getPDO()->prepare("SELECT * FROM user WHERE username = ?");
@@ -20,11 +20,9 @@ class AuthController {
         if (!$user || !password_verify($password, $user['password'])) {
             return view('auth/login', ['error' => 'Credenciales incorrectas']);
         }
-
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['username'];
         $_SESSION['user_type'] = $user['type'];
-
         
         redirect('home');
     }
