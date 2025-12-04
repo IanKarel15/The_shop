@@ -13,6 +13,12 @@ class ProductController {
         return view('home/index', ['products' => $products]);
     }
 
+    public function search ($filter) {
+        $products = (new Product())->search($filter);
+
+        return view('home/index', ['products' => $products]);
+    }
+
     public function filterByCategory ($category) {
         $products = (new Product())->filterByCategory($category);
 

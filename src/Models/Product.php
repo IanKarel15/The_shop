@@ -306,7 +306,6 @@ class Product {
 
             $productObjects[] = $product;
         }
-
         return $productObjects;
 
     }
@@ -333,5 +332,6 @@ class Product {
 // print_r(((new Product())->delete(2)));
 // print_r(((new Product())->filterByCategory("shirts")));
 // print_r(((new Product())->search("s")));
+    // public function edit ($id, $name, $price, $description, $category, $imageURL, $size1,$size2,$size3,$size4,$size5) {
 
 ?>

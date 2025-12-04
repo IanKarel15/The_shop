@@ -84,6 +84,13 @@ header {
     align-items: center;
 }
 
+#search-form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
 .search-bar-container img{
     height: 35px;
     padding: 2px;

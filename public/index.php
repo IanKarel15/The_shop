@@ -20,9 +20,10 @@ if(str_starts_with($route, "admin/")) {
     requireAuth();
 }
 
+
 //Cuando el route venga vacio o con home lo mandaremos al index donde se muestran todos los productos 
 if ($route === '' || $route === 'home') { 
-   if($method === 'GET') {
+  if($method === 'GET') {
     return (new ProductController())->index();
   }
 }
@@ -32,6 +33,12 @@ if ($route === 'carrito') {
     return (new CarritoController())->index();
   }
 }
+
+if ($route === 'search') { 
+    $q = $_POST['q'] ?? '';
+    return (new ProductController())->search($q);
+}
+
 
 if ($route === 'camisas') {
   if($method === 'GET') {
