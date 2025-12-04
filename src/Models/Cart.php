@@ -1,5 +1,8 @@
 <?php
-require_once __DIR__.'/../config/database.php';
+
+namespace App\Models;
+use PDO;
+
 
 class Cart {
 
@@ -79,7 +82,7 @@ class Cart {
     // Eliminar producto con la id del producto y la talla a eliminar del producto en el carrito
     public function delete ($product_id, $size_id) {
         $sql = "DELETE FROM cart_clothesitem WHERE clothesitem_id = :product_id AND size_id = :size_id";
-        $stmt = $this->pdo->prepdare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'product_id' => $product_id,
             'size_id' => $size_id

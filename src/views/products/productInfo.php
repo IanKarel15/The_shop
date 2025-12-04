@@ -6,13 +6,11 @@ require_once '../src/views/layouts/header.php';
             <nav class="menu-categorias">
                 <a class="link-cat" href="#"></a>
                 <a class="link-cat" href="#"></a>
-                <a class="link-cat" href="#"></a>
             </nav>
 
             <div class="iconos-container">
-                <a href="buscar.html"><img src="<?=ASSETS_PATH?>/lupa.png" alt="Buscar"></a>
                 <a href="perfil.html"><img src="<?=ASSETS_PATH?>/perfil.png" alt="Perfil"></a>
-                <a href="carrito.html"><img class="icono-carrito" src="<?=ASSETS_PATH?>/carrito.png" alt="Carrito"></a>
+                <a href="<?=BASE_PATH?>/carrito"><img class="icono-carrito"><img class="icono-carrito" src="<?=ASSETS_PATH?>/carrito.png" alt="Carrito"></a>
             </div>
         </div>
     </header>

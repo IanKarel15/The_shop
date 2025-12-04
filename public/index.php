@@ -11,6 +11,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\ProductController;
 use App\Controllers\AuthController;
+use App\Controllers\CarritoController;
 
 $route = trim($_GET['route'] ?? '', '/');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -23,6 +24,12 @@ if(str_starts_with($route, "admin/")) {
 if ($route === '' || $route === 'home') { 
    if($method === 'GET') {
     return (new ProductController())->index();
+  }
+}
+
+if ($route === 'carrito') {
+  if($method === 'GET') {
+    return (new CarritoController())->index();
   }
 }
 
