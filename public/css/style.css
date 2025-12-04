@@ -281,6 +281,7 @@ header {
 }
 .talla-item1:hover{
     transform: scale(1.2);
+    background-color:white;
 }
 
 .talla-item.selected {
