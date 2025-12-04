@@ -26,7 +26,7 @@
 
             <div class="iconos-container">
                 <?=strtoupper($_SESSION['user_name'] ?? "")?>
-                <a href="perfil.html"><img src="<?=ASSETS_PATH?>/perfil.png" alt="Perfil"></a>
+
                 <a href="<?=BASE_PATH?>/carrito"><img class="icono-carrito" src="<?=ASSETS_PATH?>/carrito.png" alt="Carrito"></a>
             </div>
         </div>
