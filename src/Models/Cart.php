@@ -90,7 +90,7 @@ class Cart {
             'size_id' => $size_id
         ]);
         
-        if ($stmt->row_count()){
+        if ($stmt->rowCount()){
             return true; // Producto eliminado
         } else {
             return false; // No se pudo eliminar el producto
@@ -150,4 +150,4 @@ class Cart {
 
 // print_r((new Cart())->buyAll());
 // print_r(((new Cart())->total()));
-print_r((new Cart())->getAll());
+//print_r((new Cart())->getAll());

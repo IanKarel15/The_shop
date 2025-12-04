@@ -25,7 +25,7 @@
                 <div class="cart-info">
                     <h3 class="product-name"><?= $item->product_name ?? 'NOMBRE DEL PRODUCTO' ?></h3>
                    
-                    <a href="<?=BASE_PATH?>/carrito/delete/<?= $item->product_id ?>/<?= $item->size_id ?>" class="link-remove">
+                    <a onclick="eliminar(event)" href="<?=BASE_PATH?>/carrito/delete/<?= $item->product_id ?>/<?= $item->product_size_id ?>" class="link-remove">
                         ELIMINAR
                     </a>
                 </div>
@@ -61,3 +61,28 @@
 
 </body>
 </html>
+
+<script>
+    function eliminar(event){
+        event.preventDefault(); 
+        const deleteUrl = event.currentTarget.href; 
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            
+            
+            reverseButtons: true, 
+            confirmButtonColor: "rgba(0, 108, 209, 1)", 
+            cancelButtonColor: "#e90000ff", 
+            confirmButtonText: "Sí, ¡Bórralo!",
+            cancelButtonText: "Cancelar"
+            
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl; 
+            }
+        });
+    }
+</script>
