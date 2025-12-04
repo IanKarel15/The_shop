@@ -20,6 +20,7 @@ class AuthController {
         if (!$user || !password_verify($password, $user['password'])) {
             return view('auth/login', ['error' => 'Credenciales incorrectas']);
         }
+        session_start();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['username'];
         $_SESSION['user_type'] = $user['type'];

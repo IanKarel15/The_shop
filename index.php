@@ -1,19 +1,9 @@
 <!-- Este archivo es el enrutador, dependiendo lo que reciba en el route mandara una vista -->
 
 <?php 
-
-// if(session_status() === PHP_SESSION_NONE){
-//     // Configuración de cookies
-//     session_set_cookie_params([
-//         'lifetime' => 0,
-//         'path'     => '/',
-//         'domain'   => 'anuies.net',
-//         'secure'   => true,
-//         'httponly' => true,
-//         'samesite' => 'Lax'
-//     ]);
-//   session_start();
-// }
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require __DIR__ . '/src/helpers/functions.php';
 require __DIR__ . '/vendor/autoload.php';

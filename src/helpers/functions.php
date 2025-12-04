@@ -8,14 +8,7 @@ define('BASE_PATH', $config['base_url']);
 define('ASSETS_PATH', $config['assets_url']);
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start([
-        'cookie_lifetime' => 0,
-        'path' => '/',
-        'domain' => 'anuies.net', 
-        'secure' => true,
-        'httponly' => true,
-        'samesite' => 'Lax'
-    ]);
+    session_start(); 
 }
 
 function view($template, $data = [])
