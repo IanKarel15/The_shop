@@ -58,12 +58,10 @@ class Cart {
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtiene varios productos porque también tiene que conseguir las tallas
 
-        // print_r($products);
-
         if ($products) {
-            $cart_product = new Cart ();
             $cart_products = [];
             foreach ($products as $p) {
+                $cart_product = new Cart ();
                 $cart_product->product_id = $p['id'];
                 $cart_product->product_name = $p['name'];
                 $cart_product->product_price = $p['price'];
@@ -148,3 +146,4 @@ class Cart {
 
 // print_r((new Cart())->buyAll());
 // print_r(((new Cart())->total()));
+print_r((new Cart())->getAll());
