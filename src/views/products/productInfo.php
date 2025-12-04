@@ -52,7 +52,7 @@ require_once '../src/views/layouts/header.php';
 
             
             
-            <button type="submit" name="action" value="add_only" class="btn-agregar-carrito btn-disabled" id="btn-agregar" disabled>
+            <button onclick="guardado()"type="submit" name="action" value="add_only" class="btn-agregar-carrito btn-disabled" id="btn-agregar" disabled>
                 AGREGAR AL CARRITO
             </button>
         </div>
@@ -82,4 +82,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+function guardado(){
+    Swal.fire({
+    title: "Guardado!",
+    icon: "success",
+    draggable: true
+    });
+}
 </script>

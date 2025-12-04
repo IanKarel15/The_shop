@@ -25,12 +25,14 @@
                 <div class="cart-info">
                     <h3 class="product-name"><?= $item->product_name ?? 'NOMBRE DEL PRODUCTO' ?></h3>
                    
-                    <a href="<?=BASE_PATH?>/cart/remove/<?= $item->product_id ?>" class="link-remove">ELIMINAR</a>
+                    <a href="<?=BASE_PATH?>/carrito/delete/<?= $item->product_id ?>/<?= $item->size_id ?>" class="link-remove">
+                        ELIMINAR
+                    </a>
                 </div>
 
                 
                 <div class="cart-price">
-                    $<?= number_format($item->product_price, 2) ?>
+                    $<?= number_format($item->product_price, 3) ?>
                 </div>
             </div>
 
@@ -41,16 +43,14 @@
 
     </div>
 
-    <!-- Sección de Total -->
     <div class="cart-total-section">
-        <div class="thick-divider"></div> <!-- Línea gruesa divisoria -->
+        <div class="thick-divider"></div> 
         <div class="total-row">
             <span class="label-total">TOTAL</span>
             <span class="amount-total">$<?= number_format($total ?? 0, 2) ?></span>
         </div>
     </div>
 
-    <!-- Botón Comprar -->
     <div class="cart-actions">
         <a href="<?=BASE_PATH?>/checkout" class="btn-checkout">
             COMPRAR
