@@ -27,11 +27,32 @@
             <div class="seccion-tallas">
                 <span class="label-tallas">TALLAS</span>
                 <div class="opciones-tallas">
-                    <a href="#" class="talla">S</a>
-                    <a href="#" class="talla">M</a>
-                    <a href="#" class="talla">L</a>
-                    <a href="#" class="talla">XL</a>
-                    <a href="#" class="talla">XXL</a>
+                    <?php 
+                        $tallas_inventario = ['S', 'M', 'L', 'XL', 'XXL'];
+                        
+                        $invData = [];
+                        if ($product && !empty($product->sizes)) {
+                            foreach ($product->sizes as $sObj) {
+                                $invData[$sObj->name] = $sObj->quantity;
+                            }
+                        }
+
+                        foreach ($tallas_inventario as $talla_clave) : 
+                            $valor_actual = $invData[$talla_clave] ?? 0;
+                            $talla_id = strtolower($talla_clave); 
+                        ?>
+                        <div class="talla-inventario-group">
+                            <label for="talla-<?= $talla_id ?>" class="talla-label"><?= $talla_clave ?></label>
+                            <input 
+                                type="number" 
+                                id="talla-<?= $talla_id ?>" 
+                                name="inventory[<?= $talla_clave ?>]" 
+                                value="<?= $valor_actual ?>"
+                                min="0" max="999" maxlength="3"           
+                                class="input-inventario"
+                            >
+                        </div>
+                        <?php endforeach; ?>
                 </div>
             </div>
 

@@ -59,9 +59,26 @@ class ProductController {
 
         $data['image'] = $imageName;
 
-        $product->add($data['name'], $data['price'], $data['description'], $data['image']);
+        $inv = $data['inventory'] ?? [];
+        $s   = $inv['S'] ?? 0;
+        $m   = $inv['M'] ?? 0;
+        $l   = $inv['L'] ?? 0;
+        $xl  = $inv['XL'] ?? 0;
+        $xxl = $inv['XXL'] ?? 0;
 
-        return redirect('/admin/index');
+        $category = $data['category'] ?? 'General';
+
+       $product->add(
+            $data['name'], 
+            $data['price'], 
+            $data['description'], 
+            $imageName, 
+            $s, $m, $l, $xl, $xxl,
+            $category
+           
+        );
+
+        return redirect('admin/index');
 
     }
 
@@ -74,16 +91,31 @@ class ProductController {
 
         if (!empty($files['image']['name'])) {
 
-            $newImage = uploadImage($files['image'], 'img');
+            $newImage = uploadImage($files['image'], 'assets');
 
             if ($newImage) {
-                deleteImage('img', $current->imageURL);
+                deleteImage('assets', $current->imageURL);
                 $imageName = $newImage;
             }
         }
-       
 
-       $product->edit($post['id'],$post['name'], $post['price'], $post['description'], $imageName);
+        $inv = $post['inventory'] ?? [];
+        $s   = $inv['S'] ?? 0;
+        $m   = $inv['M'] ?? 0;
+        $l   = $inv['L'] ?? 0;
+        $xl  = $inv['XL'] ?? 0;
+        $xxl = $inv['XXL'] ?? 0;
+        $category = $post['category'] ?? 'General';
+
+       $product->edit(
+            $post['id'],
+            $post['name'], 
+            $post['price'], 
+            $post['description'], 
+            $category,
+            $imageName,
+            $s, $m, $l, $xl, $xxl 
+        );
 
         return redirect('admin/index');
     }

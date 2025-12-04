@@ -25,11 +25,8 @@ class AuthController {
         $_SESSION['user_name'] = $user['username'];
         $_SESSION['user_type'] = $user['type'];
 
-        if($user["type"]==="admin"){
-             redirect('admin/index');
-        }
-        else
-            redirect('home');
+        
+        redirect('home');
     }
 
     public function logout()
