@@ -12,6 +12,7 @@ class Cart {
     public $product_size;
     public $product_price;
     public $product_quantity;
+    public $product_size_id;
 
     public function __construct() {
         $this->pdo = getPDO();
@@ -62,10 +63,12 @@ class Cart {
             $cart_products = [];
             foreach ($products as $p) {
                 $cart_product = new Cart ();
+                
                 $cart_product->product_id = $p['id'];
                 $cart_product->product_name = $p['name'];
                 $cart_product->product_price = $p['price'];
                 $cart_product->product_size = $p['size'];
+                $cart_product->product_size_id = $p['size_id'];
                 $cart_product->product_quantity = $p['quantity'];
                 $cart_product->product_image = $p['image'];
 
