@@ -21,6 +21,7 @@
             
             <div class="auth-links">
                 <?php if(isAuthenticated()): ?>
+                    <li><a class="auth-link" href="<?=BASE_PATH?>/login">Admin</a></li>
                     <li><a class="auth-link" href="<?=BASE_PATH?>/logout">Cerrar sesión</a></li>
                 <?php else: ?>
                     <li><a class="auth-link" href="<?=BASE_PATH?>/login">Iniciar sesión</a></li>

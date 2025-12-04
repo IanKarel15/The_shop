@@ -644,28 +644,30 @@ header {
 }
 
 .auth-links{
-    padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
     list-style: none;
     letter-spacing: 1px;
-    border-radius: 50px;
     border: none;
     display: flex;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.3s;
-    background-color: var(--f-blanco);
 
 }
 
 .auth-link{
+    display: flex;
     text-align: center;
     color: var(--azulfuerte); 
     text-decoration: none;
+    margin-right: 10px;
+    background-color: var(--f-blanco);
+    border-radius: 50px;
+    padding: 10px 20px;
 }
-.auth-links:hover {
+.auth-link:hover {
     transform: scale(1.05);
+    transition: transform 0.2s, background-color 0.3s;
 }
 
 /* ================= EDITAR PRODUCTO ================= */

@@ -23,6 +23,7 @@ class AuthController {
 
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['username'];
+        $_SESSION['user_type'] = $user['type'];
 
         if($user["type"]==="admin"){
              redirect('admin/index');
@@ -42,6 +43,6 @@ class AuthController {
         session_destroy();
 
         
-        redirect('login');
+        redirect('home');
     }
 }
