@@ -30,7 +30,7 @@
                         </a>
 
                         <a href="<?=BASE_PATH?>/admin/products/delete/<?= $product->id ?>"
-                           onclick="return confirm('¿Eliminar este producto?')"
+                           onclick="eliminar(event)"
                            class="btn-action btn-delete">
                             Eliminar
                         </a>
@@ -42,3 +42,29 @@
     </div>
 
 </main>
+
+<script>
+    function eliminar(event){
+        event.preventDefault(); 
+        const deleteUrl = event.currentTarget.href; 
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            
+            
+            reverseButtons: true, 
+            confirmButtonColor: "rgba(0, 108, 209, 1)", 
+            cancelButtonColor: "#e90000ff", 
+            confirmButtonText: "Sí, ¡Bórralo!",
+            cancelButtonText: "Cancelar"
+            
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl; 
+            }
+        });
+    }
+</script>
+

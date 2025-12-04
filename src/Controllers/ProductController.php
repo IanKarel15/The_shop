@@ -37,7 +37,7 @@ class ProductController {
         $product = new Product(getPDO());
         $product->delete($id);
 
-        return redirect('/admin/index');
+        return redirect('admin/index');
     }
 
     public function form($id = null) {

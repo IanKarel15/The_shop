@@ -6,6 +6,7 @@
     <title>The Shop</title>
     <link rel="icon" type="image/png" href="<?=ASSETS_PATH?>/icono.png">
     <link href="https://fonts.google.com/specimen/Julius+Sans+One" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="<?=BASE_PATH?>/css/style.css">
     </head>
 <body>
