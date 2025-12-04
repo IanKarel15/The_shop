@@ -12,6 +12,20 @@ class CarritoController{
         
         return view('vistasCarrito/carrito', ['products' => $products, 'total' => $total]);
     }
+
+    public function add($data) {
+
+        $carritoModel = new Cart(getPDO());
+        
+        $product_id = $data['id'];
+        $size_id = $data['size_id'];
+        $quantity = $data['quantity'];
+       
+        $carritoModel->add($product_id,$size_id,$quantity);
+
+       redirect('carrito');
+
+    }
 }
 
 ?>

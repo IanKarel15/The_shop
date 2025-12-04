@@ -20,7 +20,7 @@ class Cart {
     // Añade el producto al carrito con el id, si un producto ya está en el carrito se sumará la cantidad añadida de ese producto al carrito
     public function add($product_id, $size_id, $quantity) {
         $sql = "INSERT INTO cart_clothesitem (cart_id, clothesitem_id, quantity, size_id)
-                VALUES (1, :product_id, :quantity :size_id)
+                VALUES (1, :product_id, :quantity, :size_id)
                 ON DUPLICATE KEY UPDATE quantity = quantity + :quantity;
             ";
         $stmt = $this->pdo->prepare($sql);

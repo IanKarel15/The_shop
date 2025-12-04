@@ -34,6 +34,13 @@ if ($route === 'carrito') {
   }
 }
 
+if ($route === 'carrito/add') {
+  if($method === 'POST') {
+    return (new CarritoController())->add($_POST);
+  }
+
+}
+
 if ($route === 'search') { 
     $q = $_POST['q'] ?? '';
     return (new ProductController())->search($q);

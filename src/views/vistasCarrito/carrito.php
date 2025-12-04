@@ -18,19 +18,19 @@
             
                 <div class="cart-img-wrapper">
                     
-                    <img src="<?=ASSETS_PATH?>/<?= $item->imageURL ?? 'placeholder.png' ?>" alt="Producto">
+                    <img src="<?=ASSETS_PATH?>/<?= $item->product_image ?? 'placeholder.png' ?>" alt="Producto">
                 </div>
 
                
                 <div class="cart-info">
-                    <h3 class="product-name"><?= $item->name ?? 'NOMBRE DEL PRODUCTO' ?></h3>
+                    <h3 class="product-name"><?= $item->product_name ?? 'NOMBRE DEL PRODUCTO' ?></h3>
                    
-                    <a href="<?=BASE_PATH?>/cart/remove/<?= $item->id ?>" class="link-remove">ELIMINAR</a>
+                    <a href="<?=BASE_PATH?>/cart/remove/<?= $item->product_id ?>" class="link-remove">ELIMINAR</a>
                 </div>
 
                 
                 <div class="cart-price">
-                    $<?= number_format($item->price, 2) ?>
+                    $<?= number_format($item->product_price, 2) ?>
                 </div>
             </div>
 
