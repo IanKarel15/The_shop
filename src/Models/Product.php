@@ -150,7 +150,7 @@ class Product {
             'category' => $category
         ]);
 
-        $lastId = $pdo->lastInsertId();
+        $lastId = $this->pdo->lastInsertId();
 
         $sql = 
         "INSERT INTO stock (clothesitem_id, size_id, quantity)
@@ -163,7 +163,7 @@ class Product {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([
             'quantity1'=>$sizeS,
-            'quantity2'=>$siseM,
+            'quantity2'=>$sizeM,
             'quantity3'=>$sizeL,
             'quantity4'=>$sizeXL,
             'quantity5'=>$sizeXXL,
@@ -313,7 +313,8 @@ class Product {
 
 }
 // print_r((new Product())->getProductDetails(4));
-// (new Product())->add("Prueba", 100, "Prueba de producto", "ejemplo url");
+// $name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL, $sizeXL, $sizeXXL, $category
+// (new Product())->add("Camisa de prueba", 199, "Prueba de producto", "img2.png", 1, 1, 0, 1, 1, 'shirt');
 // print_r((new Product())->getAll());
 // ((new Product())->buy(2,1));
 
