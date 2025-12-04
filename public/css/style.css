@@ -903,6 +903,14 @@ button:hover {
     letter-spacing: 1px;
 }
 
+.price-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+
 .empty-cart-msg {
     text-align: center;
     color: var(--gris-texto);

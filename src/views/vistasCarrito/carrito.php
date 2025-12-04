@@ -30,13 +30,14 @@
                     </a>
                 </div>
 
-                
-                <div class="cart-price">
-                    $<?= number_format($item->product_price, 2) ?>
-                </div>
+                <div class="price-group">
+                    <div class="cart-price">
+                        $<?= number_format($item->product_price, 2) ?>
+                    </div>
 
-                <div class="cart-cantidad">
-                    <?= $item->product_quantity ?>
+                    <div class="cart-cantidad">
+                        <?= $item->product_quantity ?>
+                    </div>
                 </div>
             </div>
 
