@@ -33,6 +33,7 @@ require_once '../src/views/layouts/header.php';
             <p class="precio-producto"><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></p>
 
             <div class="seccion-tallas1">
+                <p class="descripcion-producto1"><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
                 <span class="label-tallas1">TALLAS</span>
             
             <div class="opciones-tallas1">
@@ -47,7 +48,7 @@ require_once '../src/views/layouts/header.php';
                 <?php endif; ?>
             </div>
 
-            <p class="descripcion-producto"><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
+            
             
             <button type="submit" name="action" value="add_only" class="btn-agregar-carrito btn-disabled" id="btn-agregar" disabled>
                 AGREGAR AL CARRITO
