@@ -265,7 +265,8 @@ class Product {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['filter'=>$filter]);
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+        $productObjects = [];
+
          foreach($products as $p) {
             $product = new Product($this->pdo); //Crear objeto de clase Product y después añadir sus atributos
             
@@ -278,14 +279,14 @@ class Product {
             $productObjects[] = $product;
         }
 
-        return $productObjects;
-
+            return $productObjects;
     }
 
     public function search ($filter)  {
         $sql = "SELECT * FROM clothesitem WHERE name LIKE :filter";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['filter'=>"%".$filter."%"]);
+        $productObjects = [];
 
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -298,10 +299,10 @@ class Product {
             $product->description = $p['description'];
             $product->imageURL = $p['image'];
 
-            $products[] = $product;
+            $productObjects[] = $product;
         }
 
-        return $products;
+        return $productObjects;
 
     }
 
