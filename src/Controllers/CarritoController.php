@@ -26,6 +26,14 @@ class CarritoController{
        redirect('carrito');
 
     }
+
+    
+     public function delete($id,$size_id)
+    {
+        $carritoModel = new Cart(getPDO());
+        $carritoModel->delete($id,$size_id);
+        redirect('carrito');
+    }
 }
 
 ?>
