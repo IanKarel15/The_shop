@@ -15,9 +15,9 @@
 
         <input type="file" name="image" accept="image/*" class="columna-imagen">
 
-            <?php if (!empty($product->image)): ?>
+            <?php if (!empty($product->imageURL)): ?>
                 <p class="">Imagen actual:</p>
-                <img src="<?=ASSETS_PATH?>/<?= $product->image ?>">
+                <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>">
             <?php endif; ?>
 
         <div class="columna-info">
@@ -28,7 +28,7 @@
                 <span class="label-tallas">TALLAS</span>
                 <div class="opciones-tallas">
                     <?php 
-                        $tallas_inventario = ['S', 'M', 'L', 'XL', 'XXL'];
+                        $tallas_inventario = ['s', 'm', 'l', 'xl', 'xxl'];
                         
                         $invData = [];
                         if ($product && !empty($product->sizes)) {

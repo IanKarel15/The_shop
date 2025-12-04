@@ -62,6 +62,17 @@ function requireAuth() {
     }
 }
 
+function deleteImage($folder, $filename)
+{
+    
+    $path = __DIR__ . "/../../public/assets/$folder/$filename";
+
+    if ($filename && file_exists($path)) {
+        unlink($path);
+    }
+}
+
+
 function isAdmin() {
     
     return isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin';
