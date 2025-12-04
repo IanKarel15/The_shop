@@ -8,6 +8,11 @@
                 <a class="link-cat" href="accesorios">ACCESORIOS</a>
             </nav>
 
+            <div class="search-bar-container">
+                <input type="text" class="search-bar" placeholder = "Buscar">
+                <a href="lupa.html"><img src="<?=ASSETS_PATH?>/lupa.png" alt="Buscar"></a>
+            </div>
+
             <div class="iconos-container">
                 <a href="perfil.html"><img src="<?=ASSETS_PATH?>/perfil.png" alt="Perfil"></a>
                 <a href="carrito.html"><img class="icono-carrito" src="<?=ASSETS_PATH?>/carrito.png" alt="Carrito"></a>

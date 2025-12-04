@@ -150,19 +150,24 @@ class Product {
             'category' => $category
         ]);
 
+        $lastId = $pdo->lastInsertId();
+
         $sql = 
         "INSERT INTO stock (clothesitem_id, size_id, quantity)
         VALUES
             (:id, 1, :quantity1), 
             (:id, 2, :quantity2),
-            (:id, 3, :quantity3)";
+            (:id, 3, :quantity3),
+            (:id, 4, :quantity4),
+            (:id, 5, :quantity5)";
         $stmt = $this->pdo->prepare($sql);
-
         $stmt->execute([
             'quantity1'=>$sizeS,
             'quantity2'=>$siseM,
             'quantity3'=>$sizeL,
-            'id'=>$id
+            'quantity4'=>$sizeXL,
+            'quantity5'=>$sizeXXL,
+            'id'=>$lastId
         ]);
     }
 

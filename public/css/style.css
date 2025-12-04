@@ -60,7 +60,7 @@ header {
 .link-cat {
     text-decoration: none;
     color: var(--gris-texto);
-    font-size: 18px;
+    font-size: 14px;
     letter-spacing: 2px;
     text-transform: uppercase; 
     transition: color 0.3s;
@@ -76,6 +76,30 @@ header {
     gap: 20px;
     align-items: center;
 }
+
+.search-bar-container {
+    display: flex;
+    flex: 1;
+    margin-left: 5%;
+    align-items: center;
+}
+
+.search-bar-container img{
+    height: 35px;
+    padding: 2px;
+    border: solid gray 1px;
+    border-radius: 10px;
+}
+
+.search-bar {
+    width: 70%;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+    border: solid gray 1px;
+    margin-right: 10px;
+}
+
 .iconos-container .icono-carrito {
     width: 56px; 
     height: 56px; 
