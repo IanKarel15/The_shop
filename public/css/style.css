@@ -232,8 +232,8 @@ header {
     margin-bottom: 15px;
 }
 
-.descripcion-producto{
-    font-size: 14px;
+.descripcion-producto1{
+    font-size: 18px;
     color: var(--gris-texto);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -252,7 +252,6 @@ header {
 .seccion-tallas1 {
     margin-bottom: 40px;
     
-    
 }
 
 .label-tallas1 {
@@ -266,18 +265,17 @@ header {
 }
 .opciones-tallas1 {
     display: flex;
-    padding-left: 10px;
     margin-bottom: 40px; 
+    align-items: center;
 }
 .talla-item1{
     border:none;
     background-color:white;
     text-decoration: underline;
     color: var(--gris-texto);
-    font-size: 22px;
-    padding-bottom: 2px;
+    font-size: 18px;
     transition: all 0.3s;
-    width: 30%;
+    width: 5px;
 }
 .talla-item1:hover{
     transform: scale(1.2);
