@@ -106,11 +106,11 @@ class ProductController {
         }
 
         $inv = $post['inventory'] ?? [];
-        $s   = $inv['S'] ?? 0;
-        $m   = $inv['M'] ?? 0;
-        $l   = $inv['L'] ?? 0;
-        $xl  = $inv['XL'] ?? 0;
-        $xxl = $inv['XXL'] ?? 0;
+        $s   = $inv['s'] ?? 0;
+        $m   = $inv['m'] ?? 0;
+        $l   = $inv['l'] ?? 0;
+        $xl  = $inv['xl'] ?? 0;
+        $xxl = $inv['xxl'] ?? 0;
         $category = $post['category'] ?? 'General';
 
        $product->edit(
