@@ -146,4 +146,4 @@ class Cart {
 
 // print_r((new Cart())->buyAll());
 // print_r(((new Cart())->total()));
-print_r((new Cart())->getAll());
+// print_r((new Cart())->getAll());
