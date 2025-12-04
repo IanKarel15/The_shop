@@ -46,6 +46,7 @@ class Cart {
                 c.name, -- nombre del producto
                 c.price, -- precio del producto
                 c.image,
+                s.id AS size_id, -- id de la talla del producto en el carrito
                 s.size, -- nombre de la talla cuya id es la que está en el carrito
                 cc.quantity -- catidad del producto en el carrito
             FROM cart_clothesitem cc
@@ -63,7 +64,7 @@ class Cart {
             $cart_products = [];
             foreach ($products as $p) {
                 $cart_product = new Cart ();
-                
+
                 $cart_product->product_id = $p['id'];
                 $cart_product->product_name = $p['name'];
                 $cart_product->product_price = $p['price'];
@@ -149,4 +150,4 @@ class Cart {
 
 // print_r((new Cart())->buyAll());
 // print_r(((new Cart())->total()));
-// print_r((new Cart())->getAll());
+print_r((new Cart())->getAll());
