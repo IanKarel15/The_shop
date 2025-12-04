@@ -32,7 +32,11 @@
 
                 
                 <div class="cart-price">
-                    $<?= number_format($item->product_price, 3) ?>
+                    $<?= number_format($item->product_price, 2) ?>
+                </div>
+
+                <div class="cart-cantidad">
+                    <?= $item->product_quantity ?>
                 </div>
             </div>
 
@@ -51,11 +55,13 @@
         </div>
     </div>
 
-    <div class="cart-actions">
-        <a href="<?=BASE_PATH?>/checkout" class="btn-checkout">
-            COMPRAR
-        </a>
-    </div>
+    <?php if (($total ?? 0) > 0): ?> 
+        <div class="cart-actions">
+            <a href="<?=BASE_PATH?>/buy" class="btn-checkout">
+                COMPRAR
+            </a>
+        </div>
+    <?php endif; ?>
 
 </main>
 
@@ -68,7 +74,7 @@
         const deleteUrl = event.currentTarget.href; 
         Swal.fire({
             title: "¿Estás seguro?",
-            text: "¡No podrás revertir esto!",
+            text: "¡Esto eliminara todos los productos!",
             icon: "warning",
             showCancelButton: true,
             

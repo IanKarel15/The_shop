@@ -41,6 +41,12 @@ if ($route === 'carrito/add') {
 
 }
 
+if ($route === 'buy') {
+  if($method === 'GET') {
+    return (new CarritoController())->comprar();
+  }
+}
+
 if (preg_match('#^carrito/delete/(\d+)/(\d+)$#', $route, $matches)) {
     $productId = filter_var($matches[1], FILTER_SANITIZE_NUMBER_INT);
     $sizeId = filter_var($matches[2], FILTER_SANITIZE_NUMBER_INT);
