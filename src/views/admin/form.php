@@ -2,23 +2,25 @@
     require_once '../src/views/layouts/header.php';
 ?>
 
-
+<h2 class="subtitulo-form">
+    <?= $product ? 'Editar producto' : 'Nuevo producto' ?>
+</h2>
 <main class="detalle-producto-container">
-    <h2 class="subtitulo-form">
-        <?= $product ? 'Editar producto' : 'Nuevo producto' ?>
-    </h2>
+
     <form action="<?=BASE_PATH?>/admin/products<?= $product ? '/edit/'.$product->id : '/create'?>" method="post" enctype="multipart/form-data">
         <?php if ($product): ?>
             <input type="hidden" name="id" value="<?= $product->id ?>">
             <input type="hidden" name="_method" value="PUT">
         <?php endif; ?> 
+        
+        <div class="columna-imagen">
+            <input type="file" name="image" accept="image/*" class="columna-imagen">
 
-        <input type="file" name="image" accept="image/*" class="columna-imagen">
-
-            <?php if (!empty($product->imageURL)): ?>
-                <p class="">Imagen actual:</p>
-                <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>">
-            <?php endif; ?>
+                <?php if (!empty($product->imageURL)): ?>
+                    <p class="">Imagen actual:</p>
+                    <img src="<?=ASSETS_PATH?>/<?= htmlspecialchars($product->imageURL ?? 'Producto sin imagen') ?>">
+                <?php endif; ?>
+        </div>
 
         <div class="columna-info">
             <input placeholder ="Ingresa el nombre" type="text" name="name" required value="<?= $product->name ?? '' ?>" class="">
