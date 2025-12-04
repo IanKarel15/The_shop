@@ -35,17 +35,19 @@ require_once '../src/views/layouts/header.php';
             <div class="seccion-tallas">
                 <span class="label-tallas">TALLAS</span>
             
-            <div class="opciones-tallas">
-               <?php if (!empty($product->sizes)): ?>
-                    <?php foreach ($product->sizes as $size): ?>
-                        <button type="button" class="talla-item" data-id="<?= $size->id ?>">
-                            <?= htmlspecialchars($size->name ?? $size->size) ?> 
-                        </button>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p class="error-text">No hay tallas disponibles</p>
-                <?php endif; ?>
-            </div>
+                <div class="opciones-tallas">
+                    <?php if (!empty($product->sizes)): ?>
+                        <?php foreach ($product->sizes as $size): ?>
+                            <?php if ($size->quantity > 0): ?>
+                                <button type="button" class="talla-item" data-id="<?= $size->id ?>">
+                                    <?= htmlspecialchars($size->name ?? $size->size) ?>
+                                </button>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="error-text">No hay tallas disponibles</p>
+                    <?php endif; ?>
+                </div>
 
             <p class="descripcion-producto"><?= htmlspecialchars($product->description ?? 'Producto sin descripcion') ?></p>
             

@@ -311,7 +311,7 @@ class Product {
     }
 
 }
-// print_r((new Product())->getProductDetails(4));
+// print_r((new Product())->getProductDetails(5));
 // $name, $price, $description, $imageURL, $sizeS, $sizeM, $sizeL, $sizeXL, $sizeXXL, $category
 // (new Product())->add("Camisa de prueba", 199, "Prueba de producto", "img2.png", 1, 1, 0, 1, 1, 'shirt');
 // print_r((new Product())->getAll());
