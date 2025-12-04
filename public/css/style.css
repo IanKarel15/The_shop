@@ -246,44 +246,41 @@ header {
     font-size: 20px;
     color: var(--gris-texto);
     letter-spacing: 2px;
-    margin-bottom: 50px; 
+    margin-bottom: 60px;
 }
 
-.seccion-tallas {
-    margin-bottom: 80px; 
+.seccion-tallas1 {
+    margin-bottom: 40px;
+    
+    
 }
 
-.label-tallas {
+.label-tallas1 {
     display: block;
-    font-size: 14px;
+    font-size: 20px;
     letter-spacing: 3px;
     color: var(--gris-texto);
-    margin-bottom: 30px;
+    margin-bottom: 20px; 
     text-transform: uppercase;
+    text-align: center;
 }
-
-.opciones-tallas {
+.opciones-tallas1 {
     display: flex;
-    gap: 40px; 
     padding-left: 10px;
     margin-bottom: 40px; 
 }
-
-.talla-item{
+.talla-item1{
     border:none;
     background-color:white;
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--gris-texto);
     font-size: 22px;
-    border-bottom: 1px solid var(--gris-texto);
     padding-bottom: 2px;
     transition: all 0.3s;
+    width: 30%;
 }
-
-.talla-item:hover {
-    color: var(--azulfuerte);
-    border-bottom-color: var(--azulfuerte);
-    transform: scale(1.1);
+.talla-item1:hover{
+    transform: scale(1.2);
 }
 
 .talla-item.selected {

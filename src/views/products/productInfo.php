@@ -28,17 +28,17 @@ require_once '../src/views/layouts/header.php';
             <input type="hidden" name="quantity" value="1">
         <?php endif; ?> 
         
-        <div class="columna-info">
+        <div class="columna-info1">
             <h1 class="titulo-producto"><?= htmlspecialchars($product->name ?? 'Producto sin nombre') ?></h1>
             <p class="precio-producto"><?= htmlspecialchars($product->price ?? 'Producto sin precio') ?></p>
 
-            <div class="seccion-tallas">
-                <span class="label-tallas">TALLAS</span>
+            <div class="seccion-tallas1">
+                <span class="label-tallas1">TALLAS</span>
             
-            <div class="opciones-tallas">
+            <div class="opciones-tallas1">
                <?php if (!empty($product->sizes)): ?>
                     <?php foreach ($product->sizes as $size): ?>
-                        <button type="button" class="talla-item" data-id="<?= $size->id ?>">
+                        <button type="button" class="talla-item1" data-id="<?= $size->id ?>">
                             <?= htmlspecialchars($size->name ?? $size->size) ?> 
                         </button>
                     <?php endforeach; ?>
@@ -60,7 +60,7 @@ require_once '../src/views/layouts/header.php';
 <script>
     //esto es para que cuando se seleccione una talla de desabiliten las demas y se habilite el boton de agregar
 document.addEventListener('DOMContentLoaded', function() {
-    const botonesTalla = document.querySelectorAll('.talla-item');
+    const botonesTalla = document.querySelectorAll('.talla-item1');
     const inputSizeId = document.getElementById('selectedSizeId');
     const btnAgregar = document.getElementById('btn-agregar');
 
