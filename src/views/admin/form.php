@@ -21,9 +21,27 @@
             <?php endif; ?>
 
         <div class="columna-info">
-            <input type="text" name="name" required value="<?= $product->name ?? '' ?>" class="">
-            <input type="number" name="price" required value="<?= $product->price ?? '' ?>" class="">
-            <textarea name="description" required class=""><?= $product->description ?? '' ?></textarea>
+            <input placeholder ="Ingresa el nombre" type="text" name="name" required value="<?= $product->name ?? '' ?>" class="">
+            <input placeholder ="Ingresa el precio" type="number" name="price" required value="<?= $product->price ?? '' ?>" class="">
+            <textarea placeholder ="Ingresa la descripcion.." name="description" required class=""><?= $product->description ?? '' ?></textarea>
+            <div class="form-group">
+                <label for="category" class="label-form">CATEGORÍA</label>
+                <select name="category" id="category" class="input-select" required>
+                    <option value="" disabled <?= empty($product->category) ? 'selected' : '' ?>>Selecciona una categoría</option>
+                    
+                    <option value="shirts" <?= ($product && isset($product->category) && $product->category === 'shirts') ? 'selected' : '' ?>>
+                        CAMISAS
+                    </option>
+                    
+                    <option value="pants" <?= ($product && isset($product->category) && $product->category === 'pants') ? 'selected' : '' ?>>
+                        PANTALONES
+                    </option>
+                    
+                    <option value="accesories" <?= ($product && isset($product->category) && $product->category === 'accesories') ? 'selected' : '' ?>>
+                        ACCESORIOS 
+                    </option>
+                </select>
+            </div>
             <div class="seccion-tallas">
                 <span class="label-tallas">TALLAS</span>
                 <div class="opciones-tallas">
