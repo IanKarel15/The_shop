@@ -816,9 +816,7 @@ button:hover {
     }
 }
 
-/* =======================================================
-   VISTA: CARRITO DE COMPRAS
-   ======================================================= */
+/* CARRITO DE COMPRAS*/
 .cart-container {
     max-width: 900px;
     margin: 50px auto;
@@ -952,7 +950,7 @@ button:hover {
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
 }
 
-/* Responsivo Carrito */
+
 @media (max-width: 600px) {
     .cart-item-row { gap: 15px; }
     .cart-img-wrapper { width: 70px; height: 90px; }
@@ -960,4 +958,115 @@ button:hover {
     .product-name { font-size: 13px; }
     .cart-price { font-size: 15px; }
     .btn-checkout { width: 100%; text-align: center; padding: 15px 0; }
+}
+
+
+/* pago */
+
+
+
+.payment-container {
+    max-width: 600px;
+    margin: 60px auto; 
+    padding: 40px;
+    background-color: var(--f-blanco);
+    text-align: center;
+}
+
+
+.payment-container h1 {
+    font-size: 24px;
+    color: var(--azulfuerte);
+    margin-bottom: 50px;
+    letter-spacing: 4px;
+    font-weight: normal;
+}
+
+
+.payment-form-group {
+    margin-bottom: 35px;
+}
+
+
+.payment-form-group h2 {
+    font-size: 14px;
+    color: var(--gris-texto);
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.payment-container input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    background-color: var(--f-blanco);
+    font-family: var(--fuente-global);
+    font-size: 18px;
+    text-align: center; 
+    color: var(--azulfuerte);
+    outline: none;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+
+.payment-container input:focus {
+    border-color: var(--azulfuerte);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+
+.cvv-input-wrapper {
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+
+.btn-comprar-ya {
+    margin-top: 30px;
+    background-color: var(--azulfuerte);
+    color: var(--f-blanco);
+    border: none;
+    padding: 18px 60px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    cursor: pointer;
+    width: 100%; 
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-comprar-ya:hover {
+    transform: scale(1.02); 
+    background-color: #2a2640;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+
+/* Esto quita las flechita que salen en los inputs de tipo número */
+.payment-container input[type=number]::-webkit-inner-spin-button, 
+.payment-container input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+@media (max-width: 600px) {
+    .payment-container {
+        padding: 20px;
+        margin-top: 30px;
+    }
+    
+    .payment-container h1 {
+        font-size: 20px;
+    }
+    
+    .btn-comprar-ya {
+        font-size: 16px;
+        padding: 15px;
+    }
 }
